@@ -1,0 +1,224 @@
+/* login page css */
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.c-btn {
+  padding: 10px 34px;
+}
+
+/* navbar css */
+
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+
+body {
+  background-color: #eee;
+}
+
+.navbar-nav > li > a {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-right: 20px;
+  color: #fff;
+}
+
+.navbar-toggler {
+  padding: 0.2rem 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.wrapper {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-color: #000;
+  clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
+  transition: 1s all;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-family: "Allerta Stencil", sans-serif;
+  margin-bottom: 4px;
+  font-size: 27px;
+}
+
+.navbar-red:hover .wrapper {
+  clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%);
+}
+
+.navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar-red {
+  background-color: rgb(68, 120, 240);
+  color: #fff;
+}
+
+.all-show {
+  z-index: 10;
+}
+
+.nav-link.active {
+  color: #000 !important;
+}
+
+.searchbox {
+  width: 30px;
+  height: 20px;
+  -webkit-transition: width 0.4s ease-in-out;
+  border-radius: 10px;
+  transition: width 0.4s ease-in-out;
+  /* background-color: rgb(68, 120, 240); */
+}
+
+.searchbox:focus {
+  width: 85%;
+  height: 20px;
+  padding: 2px 16px;
+  border: 0px solid white;
+  border-radius: 4px;
+}
+
+.calcc {
+  height: calc(100% - 72px);
+}
+
+.carousel-inner {
+  height: 500px;
+  object-fit: fill;
+}
+
+.hr-tag {
+  width: 60px;
+  background-color: rgb(68, 120, 240);
+  height: 2px;
+}
+.footer-color {
+  background-color: "rgba(0, 0, 0, 0.2)";
+}
+.theme-black-footer {
+  background-color: #1c2331;
+}
+
+.theme-blue-footer {
+  background-color: rgb(68, 120, 240);
+}
+
+.footer-link p a {
+  text-decoration: none;
+}
+
+/* 404 page */
+.bg1 {
+  background-color: #2f3242;
+  width: 100%;
+  height: 100vh;
+}
+.svg1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -400px;
+}
+.message-box {
+  height: 200px;
+  width: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: 50px;
+  color: #fff;
+  font-family: Roboto;
+  font-weight: 300;
+}
+.message-box h1 {
+  font-size: 60px;
+  line-height: 46px;
+  margin-bottom: 40px;
+}
+.buttons-con .action-link-wrap {
+  margin-top: 40px;
+}
+.buttons-con .action-link-wrap a {
+  background: #68c950;
+  padding: 8px 25px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.buttons-con .action-link-wrap a:hover {
+  background: #5a5c6c;
+  color: #fff;
+}
+
+#Polygon-1,
+#Polygon-2,
+#Polygon-3,
+#Polygon-4,
+#Polygon-4,
+#Polygon-5 {
+  animation: float 1s infinite ease-in-out alternate;
+}
+#Polygon-2 {
+  animation-delay: 0.2s;
+}
+#Polygon-3 {
+  animation-delay: 0.4s;
+}
+#Polygon-4 {
+  animation-delay: 0.6s;
+}
+#Polygon-5 {
+  animation-delay: 0.8s;
+}
+
+@keyframes float {
+  100% {
+    transform: translateY(20px);
+  }
+}
+@media (max-width: 450px) {
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -190px;
+  }
+  .message-box {
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -190px;
+    text-align: center;
+  }
+}
+
+/* login page */
+
+button.btn.btn-show-eye {
+  color: grey;
+  font-size: 22px;
+  padding-bottom: 7px;
+  border: 1px solid lightgrey;
+}
