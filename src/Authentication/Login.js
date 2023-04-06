@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import axios from "../Api/axios";
 import { validateEmail, validatePassword } from "../utils/validations";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+const LOGIN_URL = "/login";
 const DefaultValues = {
   email: "",
   password: "",
 };
 const Login = () => {
+  const { setAuth } = useContext(AuthContext);
   const [showPwd, setShowPwd] = useState(false);
   const [values, setValues] = useState(DefaultValues);
   const [errors, setErrors] = useState({
@@ -46,7 +52,22 @@ const Login = () => {
     if (!validate()) {
       return false;
     }
-    console.log("Submitted", values);
+
+    axios
+      .post("http://192.168.1.97:4000/api/login", {
+        email: values.email,
+        password: values.password,
+      })
+      .then((response) => {
+        toast.success("LoggedIn Successful");
+        console.log(response);
+        console.log(response?.data?.token);
+      })
+      .catch((response) => {
+        toast.error("Something went wrong");
+        toast.error(`${response?.request?.status}`);
+      });
+
     setValues(DefaultValues);
     return true;
   };

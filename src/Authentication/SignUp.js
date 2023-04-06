@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
+import axios from "../Api/axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   validateEmail,
   validatePassword,
@@ -9,6 +11,7 @@ import {
   validcPassword,
 } from "../utils/validations";
 
+const REGISTER_URL = "/register";
 const DefaultValues = {
   fullname: "",
   email: "",
@@ -28,10 +31,10 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    console.log(values, "///");
+    // console.log(values, "///");
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: "" });
-      console.log(errors, "<><");
+      // console.log(errors, "<><");
     }
   };
 
@@ -42,8 +45,8 @@ const SignUp = () => {
     const fullnameError = validName(values.fullname);
     const emailError = validateEmail(values.email);
     const pwdError = validatePassword(values.password);
-    const cpwdError = validcPassword(values.cpassword && values.password);
-    console.log(values.cpassword, "values.cpassword");
+    const cpwdError = validcPassword(values);
+    console.log(cpwdError, "values.cpassword");
     if (fullnameError) {
       tempErrors = { ...tempErrors, fullname: fullnameError };
       valid = false;
@@ -56,7 +59,7 @@ const SignUp = () => {
       tempErrors = { ...tempErrors, password: pwdError };
       valid = false;
     }
-    if (pwdError !== cpwdError) {
+    if (cpwdError) {
       tempErrors = { ...tempErrors, cpassword: cpwdError };
       valid = false;
     }
@@ -64,14 +67,53 @@ const SignUp = () => {
     return valid;
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) {
       return false;
     }
-    console.log("Submitted", values);
-    setValues(DefaultValues);
-    return true;
+    try {
+      e.preventDefault();
+
+      axios
+        .post("http://192.168.1.97:4000/api/register", {
+          name: values.fullname,
+          email: values.email,
+          password: values.password,
+        })
+        .then((response) => {
+          toast.success("LoggedIn Successful");
+          console.log(response);
+          console.log("Token", response.data.token);
+        });
+
+      //  {
+      //   const responce = await axios.post(
+      //     "http://192.168.1.97:4000/api/register",
+
+      //     JSON.stringify({ values }),
+      //     {
+      //       method: "GET",
+      //       mode: "cors",
+      //     },
+      //     {
+      //       headers: { "Content-Type": "application/json" },
+      //       withCredentials: true,
+      //     }
+      //   );
+      //   toast.success("LoggedIn Successful");
+      // console.log("Submitted", values);
+      // console.log("Res", responce);
+      // console.log("Token", responce.accesstoken);
+      // console.log(JSON.stringify(responce));
+      setValues(DefaultValues);
+      return true;
+    } catch (err) {
+      if (!err?.responce) {
+        toast.error("Something went wrong");
+        console.log("errorrrrr");
+      }
+    }
   };
   return (
     <>
@@ -128,7 +170,7 @@ const SignUp = () => {
                   <label className="form-label" htmlFor="form1Example23">
                     Password
                   </label>
-                  <div class="input-group mb-3">
+                  <div className="input-group mb-3">
                     <input
                       type={showPwd ? "text" : "password"}
                       name="password"
@@ -160,7 +202,7 @@ const SignUp = () => {
                   <div class="input-group mb-3">
                     <input
                       type={showPwd1 ? "text" : "password"}
-                      name="password"
+                      name="cpassword"
                       id="form1Example23"
                       onChange={handleChange}
                       placeholder="**********"
@@ -176,7 +218,7 @@ const SignUp = () => {
                       {!showPwd1 ? <AiFillEye /> : <AiFillEyeInvisible />}
                     </button>
                   </div>
-                  {errors.password && (
+                  {errors.cpassword && (
                     <p className="text-danger insta-smart-error">
                       {errors.cpassword}
                     </p>

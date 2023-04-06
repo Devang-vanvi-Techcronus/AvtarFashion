@@ -69,11 +69,7 @@ export const validcPassword = (value) => {
   if (IsEmpty(value)) {
     return "Please enter Confirm password";
   }
-  console.log(value.password, "value.password");
-
   if (value.password !== value.cpassword) {
-    console.log(value.password, "value.password");
-
     return "Password and Confirm Password does not match.";
   }
   return false;
