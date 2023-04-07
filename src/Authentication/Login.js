@@ -6,6 +6,7 @@ import axios from "../Api/axios";
 import { validateEmail, validatePassword } from "../utils/validations";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API } from "../Api/helper/backendAPi";
 
 const LOGIN_URL = "/login";
 const DefaultValues = {
@@ -54,14 +55,15 @@ const Login = () => {
     }
 
     axios
-      .post("http://192.168.1.97:4000/api/login", {
+      .post(`${(API, LOGIN_URL)}`, {
         email: values.email,
         password: values.password,
       })
       .then((response) => {
         toast.success("LoggedIn Successful");
         console.log(response);
-        console.log(response?.data?.token);
+        // const token = console.log(response?.data?.token);
+        localStorage.setItem("token", response?.data?.token);
       })
       .catch((response) => {
         toast.error("Something went wrong");

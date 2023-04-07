@@ -10,6 +10,7 @@ import {
   validName,
   validcPassword,
 } from "../utils/validations";
+import { API } from "../Api/helper/backendAPi";
 
 const REGISTER_URL = "/register";
 const DefaultValues = {
@@ -76,7 +77,7 @@ const SignUp = () => {
       e.preventDefault();
 
       axios
-        .post("http://192.168.1.97:4000/api/register", {
+        .post(`${(API, REGISTER_URL)}`, {
           name: values.fullname,
           email: values.email,
           password: values.password,
