@@ -48,12 +48,12 @@ const Login = () => {
     return valid;
   };
 
-  //  const authenticate = (data, next) => {
-  //   if (typeof window !== "undefined") {
-  //     localStorage.setItem("jwt", JSON.stringify(data));
-  //     next();
-  //   }
-  // };
+  const authenticate = (data, next) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jwt", JSON.stringify(data));
+      next();
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
