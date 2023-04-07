@@ -15,6 +15,8 @@ import Event from "./components/Event";
 import SignUp from "./Authentication/SignUp";
 import Footer from "./components/Footer";
 import Layout from "./components/Layout";
+import Services from "./components/Services";
+import RequiredAuth from "./components/RequiredAuth";
 
 function App() {
   return (
@@ -25,11 +27,16 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contactUs" element={<ContactUs />} />
-          <Route path="/events" element={<Event />} />
+          <Route path="/cart" element={<Cart />} />
+
+          <Route element={<RequiredAuth />}>
+            <Route path="/events" element={<Event />} />
+            <Route path="/services" element={<Services />} />
+          </Route>
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpwd" element={<ForgetPwd />} />
-          <Route path="/cart" element={<Cart />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>

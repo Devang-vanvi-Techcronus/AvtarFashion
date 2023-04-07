@@ -11,23 +11,24 @@ import {
   validcPassword,
 } from "../utils/validations";
 import { API } from "../Api/helper/backendAPi";
+import { postWithoutToken, setLocalStorage } from "../Api/allApi";
 
 const REGISTER_URL = "/register";
 const DefaultValues = {
-  fullname: "",
+  name: "",
   email: "",
   password: "",
-  cpassword: "",
+  // cpassword: "",
 };
 const SignUp = () => {
   const [showPwd, setShowPwd] = useState(false);
-  const [showPwd1, setShowPwd1] = useState(false);
+  // const [showPwd1, setShowPwd1] = useState(false);
   const [values, setValues] = useState(DefaultValues);
   const [errors, setErrors] = useState({
-    fullname: "",
+    name: "",
     email: "",
     password: "",
-    cpassword: "",
+    // cpassword: "",
   });
 
   const handleChange = (e) => {
@@ -43,13 +44,13 @@ const SignUp = () => {
     let tempErrors = { ...errors };
     let valid = true;
 
-    const fullnameError = validName(values.fullname);
+    const fullnameError = validName(values.name);
     const emailError = validateEmail(values.email);
     const pwdError = validatePassword(values.password);
-    const cpwdError = validcPassword(values);
-    console.log(cpwdError, "values.cpassword");
+    // const cpwdError = validcPassword(values);
+    // console.log(cpwdError, "values.cpassword");
     if (fullnameError) {
-      tempErrors = { ...tempErrors, fullname: fullnameError };
+      tempErrors = { ...tempErrors, name: fullnameError };
       valid = false;
     }
     if (emailError) {
@@ -60,61 +61,32 @@ const SignUp = () => {
       tempErrors = { ...tempErrors, password: pwdError };
       valid = false;
     }
-    if (cpwdError) {
-      tempErrors = { ...tempErrors, cpassword: cpwdError };
-      valid = false;
-    }
+    // if (cpwdError) {
+    //   tempErrors = { ...tempErrors, cpassword: cpwdError };
+    //   valid = false;
+    // }
     setErrors(tempErrors);
     return valid;
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (!validate()) {
       return false;
     }
-    try {
-      e.preventDefault();
-
-      axios
-        .post(`${(API, REGISTER_URL)}`, {
-          name: values.fullname,
-          email: values.email,
-          password: values.password,
-        })
-        .then((response) => {
-          toast.success("LoggedIn Successful");
-          console.log(response);
-          console.log("Token", response.data.token);
-        });
-
-      //  {
-      //   const responce = await axios.post(
-      //     "http://192.168.1.97:4000/api/register",
-
-      //     JSON.stringify({ values }),
-      //     {
-      //       method: "GET",
-      //       mode: "cors",
-      //     },
-      //     {
-      //       headers: { "Content-Type": "application/json" },
-      //       withCredentials: true,
-      //     }
-      //   );
-      //   toast.success("LoggedIn Successful");
-      // console.log("Submitted", values);
-      // console.log("Res", responce);
-      // console.log("Token", responce.accesstoken);
-      // console.log(JSON.stringify(responce));
-      setValues(DefaultValues);
-      return true;
-    } catch (err) {
-      if (!err?.responce) {
+    postWithoutToken(REGISTER_URL, values)
+      .then((response) => {
+        console.log(response);
+        if (response.success == true) {
+          toast.success("Sucess");
+          setLocalStorage("apiToken", response);
+        } else {
+          toast.error("User Already Exist");
+        }
+      })
+      .catch((response) => {
         toast.error("Something went wrong");
-        console.log("errorrrrr");
-      }
-    }
+      });
   };
   return (
     <>
@@ -136,15 +108,15 @@ const SignUp = () => {
                   <input
                     type="text"
                     id="form1name"
-                    name="fullname"
+                    name="name"
                     onChange={handleChange}
-                    value={values.fullname}
-                    error={errors.fullname}
+                    value={values.name}
+                    error={errors.name}
                     className="form-control form-control-lg"
                   />
-                  {errors.fullname && (
+                  {errors.name && (
                     <p className="text-danger insta-smart-error">
-                      {errors.fullname}
+                      {errors.name}
                     </p>
                   )}
                 </div>
@@ -196,7 +168,7 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                <div className="form-outline mb-3">
+                {/* <div className="form-outline mb-3">
                   <label className="form-label" htmlFor="form1Example23">
                     Confirm Password
                   </label>
@@ -224,7 +196,7 @@ const SignUp = () => {
                       {errors.cpassword}
                     </p>
                   )}
-                </div>
+                </div> */}
 
                 <div className="d-flex justify-content-end align-items-start mb-4">
                   <div className="form-check me-2">

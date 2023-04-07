@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import AuthContext from "../context/AuthProvider";
+import React, { useState } from "react";
+// import AuthContext from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import axios from "../Api/axios";
@@ -7,6 +7,9 @@ import { validateEmail, validatePassword } from "../utils/validations";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API } from "../Api/helper/backendAPi";
+import { postWithoutToken, setLocalStorage } from "../Api/allApi";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const LOGIN_URL = "/login";
 const DefaultValues = {
@@ -14,13 +17,15 @@ const DefaultValues = {
   password: "",
 };
 const Login = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const [showPwd, setShowPwd] = useState(false);
   const [values, setValues] = useState(DefaultValues);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
+
+  const Navigate = useNavigate();
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -48,36 +53,41 @@ const Login = () => {
     return valid;
   };
 
-  const authenticate = (data, next) => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("jwt", JSON.stringify(data));
-      next();
-    }
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (!validate()) {
       return false;
     }
-
-    axios
-      .post(`${(API, LOGIN_URL)}`, {
-        email: values.email,
-        password: values.password,
-      })
+    postWithoutToken(LOGIN_URL, values)
       .then((response) => {
-        toast.success("LoggedIn Successful");
         console.log(response);
-        // const token = console.log(response?.data?.token);
-        localStorage.setItem("token", response?.data?.token);
+        toast.success("Sucess");
+        setAuth(values);
+        setLocalStorage("apiToken", response.token);
+        setLocalStorage("user", response.user);
+        Navigate("/");
       })
       .catch((response) => {
         toast.error("Something went wrong");
-        toast.error(`${response?.request?.status}`);
       });
 
-    setValues(DefaultValues);
+    // axios
+    //   .post(`${(API, LOGIN_URL)}`, {
+    //     email: values.email,
+    //     password: values.password,
+    //   })
+    //   .then((response) => {
+    //     toast.success("LoggedIn Successful");
+    //     console.log(response);
+    //     // const token = console.log(response?.data?.token);
+    //     localStorage.setItem("token", response?.data?.token);
+    //   })
+    //   .catch((response) => {
+    //     toast.error("Something went wrong");
+    //     toast.error(`${response?.request?.status}`);
+    //   });
+
+    // setValues(DefaultValues);
     return true;
   };
 
@@ -160,7 +170,7 @@ const Login = () => {
                 </div>
                 <div className="aa d-grid ">
                   <button
-                    // type="submit"
+                    type="submit"
                     // onClick={onSubmit}
                     className="btn btn-outline-primary btn-sm btn-block c-btn "
                   >

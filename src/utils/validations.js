@@ -48,7 +48,6 @@ export const validatePassword = (value) => {
   if (!isValidLength.test(value)) {
     return "Password must be 10-16 Characters Long.";
   }
-  console.log(value, "valuesdsad");
 
   return false;
 };

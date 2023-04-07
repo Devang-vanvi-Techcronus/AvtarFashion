@@ -21,17 +21,17 @@ const LinksBar = () => {
           </NavLink>
         </li>
 
-        {/* <li className="nav-item">
-                  <Link to="/services" className="nav-link">
-                    Services
-                  </Link>
-                </li> */}
+        <li className="nav-item">
+          <Link to="/services" className="nav-link">
+            Services
+          </Link>
+        </li>
 
-        {/* <li className="nav-item">
+        <li className="nav-item">
           <NavLink to="/events" className="nav-link">
             Events
           </NavLink>
-        </li> */}
+        </li>
 
         <li className="nav-item">
           <NavLink to="/contactus" className="nav-link">
