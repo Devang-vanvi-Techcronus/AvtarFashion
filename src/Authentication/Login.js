@@ -48,6 +48,13 @@ const Login = () => {
     return valid;
   };
 
+  //  const authenticate = (data, next) => {
+  //   if (typeof window !== "undefined") {
+  //     localStorage.setItem("jwt", JSON.stringify(data));
+  //     next();
+  //   }
+  // };
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!validate()) {
@@ -84,7 +91,7 @@ const Login = () => {
             </div>
             <div className="col-md-7 col-lg-5 col-xl-5">
               <div className="mb-3 text-primary">
-                <h3>Please Sign in </h3>
+                <h3>Please Sign in this webpage</h3>
               </div>
               <form onSubmit={onSubmit}>
                 <div className="form-outline mb-4">
