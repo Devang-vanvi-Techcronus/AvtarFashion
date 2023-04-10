@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import Layout from "./components/Layout";
 import Services from "./components/Services";
 import RequiredAuth from "./components/RequiredAuth";
+import Logout from "./Authentication/Logout";
 
 function App() {
   return (
@@ -35,8 +36,10 @@ function App() {
           </Route>
 
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpwd" element={<ForgetPwd />} />
+          <Route path="password/reset/:token" element={<ResetPwd />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>

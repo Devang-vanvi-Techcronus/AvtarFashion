@@ -24,3 +24,27 @@ export const postWithoutToken = (url, values) => {
     })
     .catch((error) => toast.error(error?.response));
 };
+export const putWithoutToken = (url, values) => {
+  return fetch(API + url, {
+    method: "PUT",
+    body: JSON.stringify(values),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .catch((error) => toast.error(error?.response));
+};
+
+export const isAutheticated = () => {
+  if (typeof window == "undefined") {
+    return false;
+  }
+  if (localStorage.getItem("apiToken")) {
+    return JSON.parse(localStorage.getItem("apiToken"));
+  } else {
+    return false;
+  }
+};

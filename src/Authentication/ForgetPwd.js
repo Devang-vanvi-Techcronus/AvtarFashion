@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { validateEmail, validatePassword } from "../utils/validations";
+import { validateEmail } from "../utils/validations";
+import { postWithoutToken } from "../Api/allApi";
+import { toast } from "react-toastify";
+import FORGOTPWD from "../../src/assets/image/13.png";
 
 const DefaultValues = {
   email: "",
@@ -35,6 +38,15 @@ const ForgetPwd = () => {
     if (!validate()) {
       return false;
     }
+
+    postWithoutToken("/password/forgot", values)
+      .then((response) => {
+        console.log(response, "rr");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong");
+      });
+
     console.log("Submitted", values);
     setValues(DefaultValues);
     return true;
@@ -43,9 +55,9 @@ const ForgetPwd = () => {
     <>
       <section className="calcc bg-light">
         <div className="container py-5 h-100">
-          <div className="row  align-items-center justify-content-center h-100 ">
+          <div className="row  align-items-center justify-content-center hvh-80 ">
             <div className="col-md-8 col-lg-7 col-xl-6 text-center">
-              <img src="image/13.png" className="img-fluid" alt="image" />
+              <img src={FORGOTPWD} className="img-fluid" alt="image" />
             </div>
             <div className="col-md-7 col-lg-5 col-xl-5">
               <div className="mb-3 text-primary">
@@ -72,7 +84,7 @@ const ForgetPwd = () => {
                   )}
                 </div>
 
-                <div className="aa d-grid ">
+                <div className="h-45 d-grid ">
                   <button
                     type="submit"
                     className="btn btn-outline-primary btn-sm btn-block c-btn "

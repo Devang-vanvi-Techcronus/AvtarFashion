@@ -222,3 +222,14 @@ button.btn.btn-show-eye {
   padding-bottom: 7px;
   border: 1px solid lightgrey;
 }
+
+.h-45 {
+  height: 45px;
+}
+
+.hvh-80 {
+  height: 80vh;
+}
+.hvh-100 {
+  height: 100vh;
+}

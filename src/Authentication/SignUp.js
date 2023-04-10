@@ -12,6 +12,8 @@ import {
 } from "../utils/validations";
 import { API } from "../Api/helper/backendAPi";
 import { postWithoutToken, setLocalStorage } from "../Api/allApi";
+import { Notification } from "../utils/Notification";
+import SIGNUPIMG from "../../src/assets/image/12.png";
 
 const REGISTER_URL = "/register";
 const DefaultValues = {
@@ -77,24 +79,26 @@ const SignUp = () => {
     postWithoutToken(REGISTER_URL, values)
       .then((response) => {
         console.log(response);
-        if (response.success == true) {
-          toast.success("Sucess");
+        if (response.status == 201) {
+          toast.success(Notification.TOST_SUCESS);
           setLocalStorage("apiToken", response);
+        } else if (response.status == 401) {
+          toast.error(Notification.TOST_401_ERROR);
         } else {
-          toast.error("User Already Exist");
+          toast.error(Notification.TOST_500_ERROR);
         }
       })
       .catch((response) => {
-        toast.error("Something went wrong");
+        toast.error(Notification.TOST_500_ERROR);
       });
   };
   return (
     <>
       <section className=" bg-white calcc">
         <div className="container py-5 h-100">
-          <div className="row align-items-center justify-content-center h-100">
+          <div className="row align-items-center justify-content-center hvh-80 ">
             <div className="col-md-6 col-lg-7 col-xl-6 text-center">
-              <img src="image/12.png" className="img-fluid" alt="image" />
+              <img src={SIGNUPIMG} className="img-fluid" alt="image" />
             </div>
             <div className="col-md-6 col-lg-5 col-xl-5">
               <div className="mb-3 text-primary">
@@ -206,7 +210,7 @@ const SignUp = () => {
                   </div>
                   <Link to="/login">Signin </Link>
                 </div>
-                <div className="aa d-grid ">
+                <div className="h-45 d-grid ">
                   <button
                     type="submit"
                     className="btn btn-outline-primary btn-sm btn-block c-btn "
@@ -217,9 +221,9 @@ const SignUp = () => {
                 <div className="divider d-flex align-items-center my-4">
                   <p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                 </div>
-                <div className="d-flex justify-content-around align-items-center mb-5">
+                <div className="d-flex justify-content-around align-items-center h-45">
                   <button
-                    className="btn btn-outline-primary  btn-block c-btn me-2"
+                    className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
                     type="submit"
                   >
                     <i
@@ -229,7 +233,7 @@ const SignUp = () => {
                     Continue with Facebook
                   </button>
                   <button
-                    className="btn btn-outline-primary btn-block c-btn"
+                    className="btn btn-outline-primary btn-block c-btn h-100 w-100"
                     type="submit"
                   >
                     <i

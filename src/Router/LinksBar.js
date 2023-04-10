@@ -1,7 +1,11 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { getLocalStorage } from "../Api/allApi";
 
 const LinksBar = () => {
+  const token = getLocalStorage("apiToken");
+  console.log(token, "token");
+
   return (
     <>
       <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
@@ -38,16 +42,48 @@ const LinksBar = () => {
             contact us
           </NavLink>
         </li>
-        <li className="nav-item">
-          <NavLink to="/login" className="nav-link">
-            login
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/signup" className="nav-link">
-            Signup
-          </NavLink>
-        </li>
+        {!token ? (
+          <>
+            <li className="nav-item">
+              <NavLink to="/login" className="nav-link">
+                login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/signup" className="nav-link">
+                Signup
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          <li className="nav-item">
+            <NavLink to="/logout" className="nav-link">
+              Logout
+            </NavLink>
+          </li>
+        )}
+
+        {/* {!isAutheticated() && (
+          <>
+            <li className="nav-item">
+              <NavLink to="/login" className="nav-link">
+                login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/signup" className="nav-link">
+                Signup
+              </NavLink>
+            </li>
+          </>
+        )}
+        {isAutheticated() && (
+          <li className="nav-item">
+            <NavLink to="/logout" className="nav-link">
+              Logout
+            </NavLink>
+          </li>
+        )} */}
 
         <li className="nav-item">
           <a className="nav-link" href="#">
