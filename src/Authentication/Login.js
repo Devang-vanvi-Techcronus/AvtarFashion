@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import AuthContext from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import axios from "../Api/axios";
@@ -79,23 +78,6 @@ const Login = () => {
         toast.error(Notification.TOST_500_ERROR);
       });
 
-    // axios
-    //   .post(`${(API, LOGIN_URL)}`, {
-    //     email: values.email,
-    //     password: values.password,
-    //   })
-    //   .then((response) => {
-    //     toast.success("LoggedIn Successful");
-    //     console.log(response);
-    //     // const token = console.log(response?.data?.token);
-    //     localStorage.setItem("token", response?.data?.token);
-    //   })
-    //   .catch((response) => {
-    //     toast.error("Something went wrong");
-    //     toast.error(`${response?.request?.status}`);
-    //   });
-
-    // setValues(DefaultValues);
     return true;
   };
 
