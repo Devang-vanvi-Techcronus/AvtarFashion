@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import getProducts from "../Api/helper/coreapicall";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Triangle } from "react-loader-spinner";
+import Loading from "../utils/Loader";
 import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import { toast } from "react-toastify";
@@ -18,12 +18,9 @@ const Products = () => {
 
     getWithoutToken(PRODUCTS_URL)
       .then((response) => {
-        // console.log(response);
-        // console.log(response.success, "sucess");
-        console.log(response.products, "products");
-        console.log(response.products[0].category);
         if (response) {
           toast.success(Notification.TOST_SUCESS);
+          setloading(false);
           setData(response.products);
           setFilter(response.products);
         } else if (response.status == 401) {
@@ -37,42 +34,38 @@ const Products = () => {
       });
   }, []);
 
-  const Loading = () => {
-    return (
-      <>
-        <Triangle
-          height="80"
-          width="80"
-          color="rgb(68, 120, 240)"
-          ariaLabel="triangle-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      </>
-    );
-  };
   return (
     <>
-      <Loading />
-
-      {filter.map((product) => {
-        return (
-          <>
-            <div>
-              <Card style={{ width: "18rem" }}>
-                {/* <Card.Img variant="top" src={product.images[0].url} /> */}
-                <Card.Body>
-                  <Card.Title>{product.name}</Card.Title>
-                  <Card.Text>{product.description}</Card.Text>
-                  <Card.Text>Rs. {product.price}</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-            </div>
-          </>
-        );
-      })}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="container">
+          <div className="d-flex  flex-wrap justify-content-center my-5">
+            {filter.map((product) => {
+              return (
+                <>
+                  <Card style={{ width: "18rem" }} className="mb-3 me-3">
+                    <Card.Img
+                      variant="top"
+                      src={product.images[0].url}
+                      style={{ padding: "10px" }}
+                      className="h-250"
+                    />
+                    <Card.Body>
+                      <div className="">
+                        <Card.Title>{product.name}</Card.Title>
+                      </div>
+                      {/* <Card.Text>{product.description}</Card.Text> */}
+                      <Card.Text>Rs. {product.price}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </>
   );
 };

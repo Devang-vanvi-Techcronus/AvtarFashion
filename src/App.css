@@ -239,3 +239,18 @@ button.btn.btn-show-eye {
   outline: 0;
   box-shadow: none;
 }
+.loader-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 82%);
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+}
+
+.h-250 {
+  height: 250px;
+}

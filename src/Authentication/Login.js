@@ -11,6 +11,7 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "../utils/Notification";
 import LOGINIMG from "../../src/assets/image/11.png";
+import Loading from "../utils/Loader";
 
 const LOGIN_URL = "/login";
 const DefaultValues = {
@@ -21,6 +22,7 @@ const Login = () => {
   const { setAuth } = useAuth();
   const [showPwd, setShowPwd] = useState(false);
   const [values, setValues] = useState(DefaultValues);
+  const [loading, setloading] = useState([false]);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -59,9 +61,11 @@ const Login = () => {
     if (!validate()) {
       return false;
     }
+    // setloading(true);
     postWithoutToken(LOGIN_URL, values)
       .then((response) => {
         console.log(response);
+        // setloading(false);
         if (response.status == 200) {
           toast.success(Notification.TOST_SUCESS);
           setAuth(values);
@@ -83,6 +87,9 @@ const Login = () => {
 
   return (
     <>
+      {/* {loading ? (
+        <Loading />
+      ) : ( */}
       <section className=" bg-white calcc">
         <div className="container py-5 h-100">
           <div className="row h-100  align-items-center justify-content-center hvh-80 ">
@@ -187,6 +194,7 @@ const Login = () => {
           </div>
         </div>
       </section>
+      {/* )} */}
     </>
   );
 };
