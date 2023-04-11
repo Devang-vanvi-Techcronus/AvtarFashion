@@ -144,18 +144,7 @@ const Login = () => {
                   )}
                 </div>
 
-                <div className="d-flex justify-content-around align-items-center mb-4">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="form1Example3"
-                    />
-                    <label className="form-check-label" htmlFor="form1Example3">
-                      Remember me
-                    </label>
-                  </div>
+                <div className=" mb-4 d-flex flex-row-reverse">
                   <Link to="/forgotpwd">Forgot password?</Link>
                 </div>
                 <div className="h-45 d-grid ">

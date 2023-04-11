@@ -6,22 +6,7 @@ const Logout = () => {
   const Navigate = useNavigate();
   return (
     <>
-      {!token ? (
-        <>
-          <li className="nav-item">
-            <NavLink to="/login" className="nav-link">
-              login
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/signup" className="nav-link">
-              Signup
-            </NavLink>
-          </li>
-        </>
-      ) : (
-        Navigate("/")
-      )}
+      {token},{Navigate("/")}
     </>
   );
 };

@@ -77,19 +77,19 @@ body {
 
 .searchbox {
   width: 30px;
-  height: 20px;
+  height: 25px;
   -webkit-transition: width 0.4s ease-in-out;
-  border-radius: 10px;
+  border-radius: 7px;
   transition: width 0.4s ease-in-out;
   /* background-color: rgb(68, 120, 240); */
 }
 
 .searchbox:focus {
   width: 85%;
-  height: 20px;
-  padding: 2px 16px;
+  height: 25px;
+  padding: 2px 15px;
   border: 0px solid white;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .calcc {
@@ -232,4 +232,10 @@ button.btn.btn-show-eye {
 }
 .hvh-100 {
   height: 100vh;
+}
+
+.form-control:focus {
+  background-color: none;
+  outline: 0;
+  box-shadow: none;
 }

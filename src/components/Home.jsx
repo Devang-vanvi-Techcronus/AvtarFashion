@@ -1,68 +1,32 @@
 import React from "react";
+import Carousel from "react-bootstrap/Carousel";
+import FIRSTCROUSER from "../../src/assets/image/banner/34.webp";
+import SECCROUSER from "../../src/assets/image/banner/35.webp";
+import THIRDCROUSER from "../../src/assets/image/banner/36.webp";
+import FORTHCROUSER from "../../src/assets/image/banner/37.webp";
 
 const Home = () => {
+  console.log("111");
   return (
     <>
-      <div
-        id="carouselExampleInterval"
-        className="carousel slide my-5"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-inner ">
-          <div className="carousel-item active" data-bs-interval="1000">
-            <img
-              src="image/banner/34.webp"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item" data-bs-interval="1000">
-            <img
-              src="image/banner/35.webp"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="image/banner/36.webp"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="image/banner/37.webp"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleInterval"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleInterval"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
+      <Carousel className="pt-3">
+        <Carousel.Item interval={1000}>
+          <img className="d-block w-100" src={FIRSTCROUSER} alt="First slide" />
+          <Carousel.Caption></Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2000}>
+          <img className="d-block w-100" src={SECCROUSER} alt="Second slide" />
+          <Carousel.Caption></Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={5000}>
+          <img className="d-block w-100" src={THIRDCROUSER} alt="Third slide" />
+          <Carousel.Caption></Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={5000}>
+          <img className="d-block w-100" src={FORTHCROUSER} alt="Third slide" />
+          <Carousel.Caption></Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     </>
   );
 };
