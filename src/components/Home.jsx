@@ -4,12 +4,12 @@ import FIRSTCROUSER from "../../src/assets/image/banner/34.webp";
 import SECCROUSER from "../../src/assets/image/banner/35.webp";
 import THIRDCROUSER from "../../src/assets/image/banner/36.webp";
 import FORTHCROUSER from "../../src/assets/image/banner/37.webp";
+import Products from "./Products";
 
 const Home = () => {
-  console.log("111");
   return (
     <>
-      <Carousel className="pt-3">
+      <Carousel className="pt-5 pb-3">
         <Carousel.Item interval={1000}>
           <img className="d-block w-100" src={FIRSTCROUSER} alt="First slide" />
           <Carousel.Caption></Carousel.Caption>
@@ -27,6 +27,7 @@ const Home = () => {
           <Carousel.Caption></Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      <Products />
     </>
   );
 };

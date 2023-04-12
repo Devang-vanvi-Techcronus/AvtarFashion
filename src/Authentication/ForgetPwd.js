@@ -3,12 +3,15 @@ import { validateEmail } from "../utils/validations";
 import { postWithoutToken } from "../Api/allApi";
 import { toast } from "react-toastify";
 import FORGOTPWD from "../../src/assets/image/13.png";
+import { Notification } from "../utils/Notification";
+import Loading from "../utils/Loader";
 
 const DefaultValues = {
   email: "",
 };
 const ForgetPwd = () => {
   const [values, setValues] = useState(DefaultValues);
+  const [loading, setloading] = useState(false);
   const [errors, setErrors] = useState({
     email: "",
   });
@@ -38,10 +41,12 @@ const ForgetPwd = () => {
     if (!validate()) {
       return false;
     }
-
+    setloading(true);
     postWithoutToken("/password/forgot", values)
       .then((response) => {
-        console.log(response, "rr");
+        setloading(false);
+        // console.log(response, "rr");
+        toast.success(Notification.TOST_SUCESS);
       })
       .catch((error) => {
         toast.error("Something went wrong");
@@ -53,50 +58,54 @@ const ForgetPwd = () => {
   };
   return (
     <>
-      <section className="calcc bg-light">
-        <div className="container py-5 h-100">
-          <div className="row  align-items-center justify-content-center hvh-80 ">
-            <div className="col-md-8 col-lg-7 col-xl-6 text-center">
-              <img src={FORGOTPWD} className="img-fluid" alt="image" />
-            </div>
-            <div className="col-md-7 col-lg-5 col-xl-5">
-              <div className="mb-3 text-primary">
-                <h3>Forgot Password</h3>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className="calcc bg-light">
+          <div className="container py-5 h-100">
+            <div className="row  align-items-center justify-content-center hvh-80 ">
+              <div className="col-md-8 col-lg-7 col-xl-6 text-center">
+                <img src={FORGOTPWD} className="img-fluid" alt="image" />
               </div>
-              <form onSubmit={onSubmit}>
-                <div className="form-outline mb-4">
-                  <label className="form-label" htmlFor="form1Example13">
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="form1Example13"
-                    onChange={handleChange}
-                    value={values.email}
-                    error={errors.email}
-                    className="form-control form-control-lg"
-                  />
-                  {errors.email && (
-                    <p className="text-danger insta-smart-error">
-                      {errors.email}
-                    </p>
-                  )}
+              <div className="col-md-7 col-lg-5 col-xl-5">
+                <div className="mb-3 text-primary">
+                  <h3>Forgot Password</h3>
                 </div>
+                <form onSubmit={onSubmit}>
+                  <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="form1Example13">
+                      Email address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="form1Example13"
+                      onChange={handleChange}
+                      value={values.email}
+                      error={errors.email}
+                      className="form-control form-control-lg"
+                    />
+                    {errors.email && (
+                      <p className="text-danger insta-smart-error">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
 
-                <div className="h-45 d-grid ">
-                  <button
-                    type="submit"
-                    className="btn btn-outline-primary btn-sm btn-block c-btn "
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
+                  <div className="h-45 d-grid ">
+                    <button
+                      type="submit"
+                      className="btn btn-outline-primary btn-sm btn-block c-btn "
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

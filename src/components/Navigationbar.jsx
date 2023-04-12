@@ -14,7 +14,7 @@ const Navigationbar = () => {
       >
         <Container>
           <Navbar.Brand href="#home">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
               <i className="fa fa-buysellads fa-lg me-2" aria-hidden="true"></i>
               AvtarFashion
             </a>

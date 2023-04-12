@@ -84,17 +84,22 @@ const LinksBar = () => {
             <i className="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
           </Link>
         </Nav.Link>
-        <Nav.Link className="nav-item theme-blue-footer">
-          <OverlayTrigger
-            placement="bottom"
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltip}
-          >
-            <Button onClick={handleClick}>
-              <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
-            </Button>
-          </OverlayTrigger>
-        </Nav.Link>
+
+        {isAuthenticated().token && (
+          <>
+            <Nav.Link className="nav-item theme-blue-footer">
+              <OverlayTrigger
+                placement="bottom"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+              >
+                <Button onClick={handleClick}>
+                  <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                </Button>
+              </OverlayTrigger>
+            </Nav.Link>
+          </>
+        )}
       </Nav>
     </>
   );

@@ -18,6 +18,7 @@ import Layout from "./components/Layout";
 import Services from "./components/Services";
 import RequiredAuth from "./components/RequiredAuth";
 import Logout from "./Authentication/Logout";
+import Product from "./components/product";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<Product />} />
 
           <Route element={<RequiredAuth />}>
             <Route path="/events" element={<Event />} />

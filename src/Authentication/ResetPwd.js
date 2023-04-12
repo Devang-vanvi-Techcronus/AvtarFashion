@@ -77,7 +77,7 @@ const ResetPwd = () => {
     <>
       <section className="calcc bg-white">
         <div className="container py-5 h-100">
-          <div className="row align-items-center justify-content-center  hvh-80 ">
+          <div className="row align-items-center justify-content-center hvh-80 ">
             <div className="col-md-8 col-lg-7 col-xl-6 text-center">
               <img src={RESETIMG} className="img-fluid" alt="image" />
             </div>

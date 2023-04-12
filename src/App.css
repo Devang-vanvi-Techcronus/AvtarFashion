@@ -237,7 +237,7 @@ button.btn.btn-show-eye {
 .form-control:focus {
   background-color: none;
   outline: 0;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .loader-center {
   display: flex;
@@ -253,4 +253,17 @@ button.btn.btn-show-eye {
 
 .h-250 {
   height: 250px;
+}
+/* .w-18 {
+  width: "18rem" !important;
+} */
+
+/* products */
+
+.row.width-30 {
+  width: 30% !important;
+}
+.text-area {
+  resize: none;
+  height: 100px;
 }
