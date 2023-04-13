@@ -7,12 +7,13 @@ import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import { toast } from "react-toastify";
 import { Notification } from "../utils/Notification";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState([data]);
   const [loading, setloading] = useState([false]);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     setloading(true);
@@ -82,6 +83,10 @@ const Products = () => {
   };
 
   const Showproducts = () => {
+    const handleById = (id) => {
+      console.log(id, "id");
+      Navigate(`/products/${id}`, { state: { id: id } });
+    };
     return (
       <>
         {filter.map((product) => {
@@ -100,12 +105,18 @@ const Products = () => {
                   </div>
                   {/* <Card.Text>{product.description}</Card.Text> */}
                   <Card.Text>Rs. {product.price}</Card.Text>
-                  <NavLink
+                  {/* <NavLink
                     to={`/products/${product._id}`}
                     className="btn btn-outline-dark"
                   >
                     Buy Now
-                  </NavLink>
+                  </NavLink> */}
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => handleById(product?._id)}
+                  >
+                    Buy now
+                  </button>
                 </Card.Body>
               </Card>
             </>

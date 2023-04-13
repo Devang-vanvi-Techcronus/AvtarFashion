@@ -267,3 +267,14 @@ button.btn.btn-show-eye {
   resize: none;
   height: 100px;
 }
+.cart_image {
+  width: 400px;
+  height: 400px;
+}
+.EmptyCart_image {
+  width: 130px;
+  height: 130px;
+}
+.btn_color {
+  color: blue;
+}

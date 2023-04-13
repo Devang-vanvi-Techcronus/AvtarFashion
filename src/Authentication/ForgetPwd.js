@@ -45,7 +45,7 @@ const ForgetPwd = () => {
     postWithoutToken("/password/forgot", values)
       .then((response) => {
         setloading(false);
-        // console.log(response, "rr");
+
         toast.success(Notification.TOST_SUCESS);
       })
       .catch((error) => {
