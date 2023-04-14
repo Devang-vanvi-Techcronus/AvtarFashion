@@ -23,7 +23,7 @@ const ResetPwd = () => {
   const uid = window.location.href.split("/")[4];
   console.log(uid, "uid");
 
-  const token = window.location.href.split("/")[5];
+  const token = window.location.href.split("=")[1];
   console.log(token, "token");
 
   const handleChange = (e) => {

@@ -29,19 +29,20 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contactUs" element={<ContactUs />} />
-          <Route path="/cart" element={<Cart />} />
+
           <Route path="/products/:id" element={<Product />} />
 
           <Route element={<RequiredAuth />}>
             <Route path="/events" element={<Event />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpwd" element={<ForgetPwd />} />
-          <Route path="password/reset/:token" element={<ResetPwd />} />
+          <Route path="/password" element={<ResetPwd />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
