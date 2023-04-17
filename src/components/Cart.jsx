@@ -11,13 +11,10 @@ export default function Cart() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.handleCart);
 
-  console.log(state, "state");
   useEffect(() => {
     const getProduct = () => {
       getWithoutToken(PRODUCTS_URL).then((response) => {
         if (response) {
-          console.log(response.products, "responseee");
-
           setProduct(response.products);
         }
       });
@@ -26,7 +23,12 @@ export default function Cart() {
   }, []);
 
   const handleAdd = (product) => {
+    console.log("product: ", product);
+
     dispatch(addCart(product));
+  };
+  const handleDel = (product) => {
+    dispatch(delCart(product));
   };
 
   const cartItems = (product) => {
@@ -87,7 +89,11 @@ export default function Cart() {
 
                           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                             <div className="d-flex mb-4 cart_maxwidth">
-                              <button className="btn btn-primary px-3 me-2">
+                              <button
+                                className="btn btn-primary px-3 me-2"
+                                disabled={data.qty == 1}
+                                onClick={() => handleDel(data)}
+                              >
                                 <i className="fa fa-minus"></i>
                               </button>
 
@@ -96,13 +102,16 @@ export default function Cart() {
                                   id="form1"
                                   min="0"
                                   name="quantity"
-                                  value="1"
+                                  value={data.qty}
                                   type="number"
                                   className="form-control"
                                 />
                               </div>
 
-                              <button className="btn btn-primary px-3 ms-2">
+                              <button
+                                className="btn btn-primary px-3 ms-2"
+                                onClick={() => handleAdd(data)}
+                              >
                                 <i className="fa fa-plus"></i>
                               </button>
                             </div>

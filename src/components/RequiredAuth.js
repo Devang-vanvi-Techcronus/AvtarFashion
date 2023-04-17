@@ -13,12 +13,10 @@ const RequiredAuth = () => {
   const auth = useAuth();
   const location = useLocation();
   const [user, setUser] = useState({});
-  //   console.log(auth);
 
   useEffect(() => {
     let userData = getLocalStorage("user");
     setUser(JSON.parse(userData));
-    console.log(user);
   }, []);
 
   return user ? (

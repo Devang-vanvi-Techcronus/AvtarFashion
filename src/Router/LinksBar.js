@@ -7,8 +7,10 @@ import Button from "react-bootstrap/Button";
 import { isAuthenticated } from "../utils/common";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { useSelector } from "react-redux";
 
 const LinksBar = () => {
+  const state = useSelector((state) => state.handleCart);
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Logout
@@ -80,7 +82,8 @@ const LinksBar = () => {
       <Nav>
         <Nav.Link className="nav-item">
           <Link to="/cart" className="nav-link">
-            Cart{" "}
+            {/* akjsdjashjdhgsa */}
+            Cart<span>({state.length})</span>
             <i className="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
           </Link>
         </Nav.Link>

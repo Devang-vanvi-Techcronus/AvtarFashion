@@ -52,7 +52,6 @@ const ForgetPwd = () => {
         toast.error("Something went wrong");
       });
 
-    console.log("Submitted", values);
     setValues(DefaultValues);
     return true;
   };

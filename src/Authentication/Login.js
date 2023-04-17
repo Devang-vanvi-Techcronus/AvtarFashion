@@ -34,7 +34,6 @@ const Login = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: "" });
-      console.log(errors, "<><");
     }
   };
 
@@ -64,7 +63,6 @@ const Login = () => {
     setloading(true);
     postWithoutToken(LOGIN_URL, values)
       .then((response) => {
-        console.log(response);
         setloading(false);
         if (response.status == 200) {
           toast.success(Notification.TOST_SUCESS);

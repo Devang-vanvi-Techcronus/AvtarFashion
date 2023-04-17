@@ -21,10 +21,8 @@ const ResetPwd = () => {
 
   const { password, confirm_password } = values;
   const uid = window.location.href.split("/")[4];
-  console.log(uid, "uid");
 
   const token = window.location.href.split("=")[1];
-  console.log(token, "token");
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -40,7 +38,6 @@ const ResetPwd = () => {
 
     const pwdError = validatePassword(values.password);
     const cpwdError = validcPassword(values);
-    console.log(cpwdError, "values.cpassword");
 
     if (pwdError) {
       tempErrors = { ...tempErrors, password: pwdError };
@@ -66,9 +63,7 @@ const ResetPwd = () => {
       confirmPassword: values.cpassword,
     };
     putWithoutToken("/password/reset/" + token, payload)
-      .then((response) => {
-        console.log(response, "rrr");
-      })
+      .then((response) => {})
       .catch((error) => {
         toast.error("Something went wrong");
       });

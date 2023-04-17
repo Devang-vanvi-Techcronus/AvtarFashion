@@ -65,7 +65,6 @@ export const validName = (value) => {
 };
 
 export const validcPassword = (value) => {
-  console.log(value, "valllllle");
   if (IsEmpty(value)) {
     return Notification.VAL_CPASSWORD;
   }

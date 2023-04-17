@@ -37,10 +37,9 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    // console.log(values, "///");
+
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: "" });
-      // console.log(errors, "<><");
     }
   };
 
@@ -52,7 +51,7 @@ const SignUp = () => {
     const emailError = validateEmail(values.email);
     const pwdError = validatePassword(values.password);
     // const cpwdError = validcPassword(values);
-    // console.log(cpwdError, "values.cpassword");
+
     if (fullnameError) {
       tempErrors = { ...tempErrors, name: fullnameError };
       valid = false;
@@ -81,7 +80,6 @@ const SignUp = () => {
     setloading(true);
     postWithoutToken(REGISTER_URL, values)
       .then((response) => {
-        console.log(response);
         setloading(false);
         if (response.status == 201) {
           toast.success(Notification.TOST_SUCESS);
