@@ -21,7 +21,7 @@ export default function Product() {
   const dispatch = useDispatch();
 
   const addProduct = (product) => {
-    dispatch(addToCart(product));
+    dispatch(addCart(product));
   };
 
   useEffect(() => {

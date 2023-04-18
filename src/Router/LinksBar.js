@@ -81,10 +81,13 @@ const LinksBar = () => {
       </Nav>
       <Nav>
         <Nav.Link className="nav-item">
-          <Link to="/cart" className="nav-link">
-            {/* akjsdjashjdhgsa */}
-            Cart<span>({state.length})</span>
-            <i className="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+          <Link to="/cart" className="nav-link cart1">
+            {isAuthenticated().token != null ? (
+              <span class="count">{state.length}</span>
+            ) : (
+              <span class="count">0</span>
+            )}
+            <i class="material-icons fa fa-shopping-cart fa-lg"></i>
           </Link>
         </Nav.Link>
 

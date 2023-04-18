@@ -109,7 +109,7 @@ const Products = ({ activeTab }) => {
                             className="text-dark"
                             onClick={() => filerProduct("jewelery")}
                           >
-                            Home items{" "}
+                            Jewellery
                           </a>
                         </li>
                         <li>
@@ -348,80 +348,7 @@ const Products = ({ activeTab }) => {
                     </div>
                   </div>
                 </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingThree">
-                    <button
-                      className="accordion-button text-dark bg-light"
-                      type="button"
-                      data-mdb-toggle="collapse"
-                      data-mdb-target="#panelsStayOpen-collapseFour"
-                      aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapseFour"
-                    >
-                      Size
-                    </button>
-                  </h2>
-                  <div
-                    id="panelsStayOpen-collapseFour"
-                    className="accordion-collapse collapse show"
-                    aria-labelledby="headingThree"
-                  >
-                    <div className="accordion-body">
-                      <input
-                        type="checkbox"
-                        className="btn-check border justify-content-center "
-                        id="btn-check1"
-                        checked
-                        autocomplete="off"
-                      />
-                      <label
-                        className="btn btn-white mb-1 px-1 product_w me-1"
-                        for="btn-check1"
-                      >
-                        XS
-                      </label>
-                      <input
-                        type="checkbox"
-                        className="btn-check border justify-content-center"
-                        id="btn-check2"
-                        checked
-                        autocomplete="off"
-                      />
-                      <label
-                        className="btn btn-white mb-1 px-1 product_w me-1"
-                        for="btn-check2"
-                      >
-                        SM
-                      </label>
-                      <input
-                        type="checkbox"
-                        className="btn-check border justify-content-center"
-                        id="btn-check3"
-                        checked
-                        autocomplete="off"
-                      />
-                      <label
-                        className="btn btn-white mb-1 px-1 product_w me-1"
-                        for="btn-check3"
-                      >
-                        LG
-                      </label>
-                      <input
-                        type="checkbox"
-                        className="btn-check border justify-content-center"
-                        id="btn-check4"
-                        checked
-                        autocomplete="off"
-                      />
-                      <label
-                        className="btn btn-white mb-1 px-1 product_w "
-                        for="btn-check4"
-                      >
-                        XXL
-                      </label>
-                    </div>
-                  </div>
-                </div>
+
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">
                     <button
@@ -616,7 +543,7 @@ const Products = ({ activeTab }) => {
                         href="#!"
                         className="btn btn-light border icon-hover px-2 pt-2"
                       >
-                        <i className="fa fa-heart fa-lg text-secondary px-1"></i>
+                        <i className="fa fa-heart fa-lg text-secondary px-1 heart"></i>
                       </a>
                     </div>
                   </div>

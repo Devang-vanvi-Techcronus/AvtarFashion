@@ -51,6 +51,14 @@ const ContactUs = () => {
                   className="form-control form-control-lg text-area"
                 />
               </div>
+              <div className="h-45 d-grid ">
+                <button
+                  type="submit"
+                  className="btn btn-outline-primary btn-sm btn-block c-btn "
+                >
+                  Submit
+                </button>
+              </div>
             </form>
           </div>
         </div>

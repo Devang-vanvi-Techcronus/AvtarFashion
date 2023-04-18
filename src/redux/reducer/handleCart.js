@@ -12,7 +12,7 @@ export const handleCart = (state = cart, action) => {
       console.log(exisst, "exist");
       if (exisst) {
         return state.map((x) =>
-          exist ? { ...x, qty: x.qty + 1, price: x.price * 2 } : x
+          exisst ? { ...x, qty: x.qty + 1, price: x.price * 2 } : x
         );
       }
       return [...state, { ...productss, qty: 1 }];
@@ -21,9 +21,9 @@ export const handleCart = (state = cart, action) => {
       // console.log(product);
       const exist = state.find((x) => x._id === product._id);
       console.log(exist, "exist");
-      if (exist._id === product._id) {
+      if (exist) {
         return state.map((x) =>
-          exist ? { ...x, qty: x.qty + 1, price: x.price * 2 } : x
+          exist._id == x._id ? { ...x, qty: x.qty + 1, price: x.price * 2 } : x
         );
       }
       return [...state, { ...product, qty: 1 }];
@@ -35,7 +35,7 @@ export const handleCart = (state = cart, action) => {
       console.log("exist1: ", exist1);
       if (exist1) {
         return state.map((x) =>
-          exist1 ? { ...x, qty: x.qty - 1, price: x.price / 2 } : x
+          exist1._id == x._id ? { ...x, qty: x.qty - 1, price: x.price / 2 } : x
         );
       }
 
