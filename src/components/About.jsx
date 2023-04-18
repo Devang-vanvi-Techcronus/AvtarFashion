@@ -40,7 +40,6 @@ const About = () => {
                   <h2> AVTARFASHION INSIDER</h2>
                   <span>ONLINE SHOPPING MADE EASY</span>
                 </div>
-                {/* imagehere */}
                 <figure className="image-1">
                   <a href="#" className="lightbox-image" data-fancybox="images">
                     <img title="Rahul Kumar Yadav" src={ABOUTIMG} alt="" />

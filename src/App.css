@@ -359,11 +359,7 @@ a.text-dark {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
-/* .fa-heart:active {
-  content: "\f004";
-  color: red;
-} */
-
+/* About page css--------------------------------- */
 a:active {
   text-decoration: none;
   outline: none;
@@ -571,7 +567,7 @@ section {
   position: absolute;
   bottom: 16px;
   z-index: 1;
-  background: #1c23317a;
+  background: #416ed796;
   padding: 10px 15px;
   left: 96px;
   width: calc(100% - 152px);

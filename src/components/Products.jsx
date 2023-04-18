@@ -594,7 +594,7 @@ const Products = ({ activeTab }) => {
                   </div>
                 </div>
               </header>
-              <div className="row">
+              <div className="row mb-5">
                 <Showproducts />
               </div>
             </div>
