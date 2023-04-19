@@ -5,13 +5,15 @@ import SECCROUSER from "../../src/assets/image/banner/35.webp";
 import THIRDCROUSER from "../../src/assets/image/banner/36.webp";
 import FORTHCROUSER from "../../src/assets/image/banner/37.webp";
 import Products from "./Products";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("1");
+  const navigate = useNavigate();
 
   return (
     <>
-      <Carousel className="pt-5 pb-3 ">
+      <Carousel className="pt-5 pb-3 " onClick={() => navigate("/products")}>
         <Carousel.Item interval={1000}>
           <img className="d-block w-100" src={FIRSTCROUSER} alt="First slide" />
           <Carousel.Caption></Carousel.Caption>

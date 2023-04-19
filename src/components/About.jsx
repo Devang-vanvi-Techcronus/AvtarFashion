@@ -27,7 +27,7 @@ const About = () => {
                   platform coupons, each tier comes with its own special perks.
                 </div>
                 <div className="btn-box">
-                  <a href="#" className="theme-btn btn-style-one">
+                  <a href="/contactus" className="theme-btn btn-style-one">
                     Contact Us
                   </a>
                 </div>
@@ -42,7 +42,11 @@ const About = () => {
                 </div>
                 <figure className="image-1">
                   <a href="#" className="lightbox-image" data-fancybox="images">
-                    <img title="Rahul Kumar Yadav" src={ABOUTIMG} alt="" />
+                    <img
+                      title="Rahul Kumar Yadav"
+                      src={ABOUTIMG}
+                      alt="imagehere"
+                    />
                   </a>
                 </figure>
               </div>

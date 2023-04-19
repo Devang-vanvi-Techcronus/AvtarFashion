@@ -6,12 +6,16 @@ import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import { toast } from "react-toastify";
 import { Notification } from "../utils/Notification";
 import { NavLink, useNavigate } from "react-router-dom";
+import Accordion from "react-bootstrap/Accordion";
+import Pagination from "react-bootstrap/Pagination";
+import Pagi from "../utils/Pagi";
 
 const Products = ({ activeTab }) => {
   console.log(activeTab, "activeTab");
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState([data]);
   const [loading, setloading] = useState([false]);
+  const [view, setView] = useState(false);
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -61,21 +65,12 @@ const Products = ({ activeTab }) => {
               className="collapse card d-lg-block mb-5"
               id="navbarSupportedContent"
             >
-              <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingOne">
-                    <button
-                      className="accordion-button text-dark bg-light"
-                      type="button"
-                      data-mdb-toggle="collapse"
-                      data-mdb-target="#panelsStayOpen-collapseOne"
-                      aria-expanded="true"
-                      aria-controls="panelsStayOpen-collapseOne"
-                    >
-                      Related items
-                    </button>
-                  </h2>
-                  <div
+              <Accordion defaultActiveKey={["0"]} alwaysOpen>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>
+                    <div className="text-dark ">Related items</div>
+                  </Accordion.Header>
+                  <Accordion.Body
                     id="panelsStayOpen-collapseOne"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingOne"
@@ -95,7 +90,7 @@ const Products = ({ activeTab }) => {
                           <a
                             href="#"
                             className="text-dark"
-                            onClick={() => filerProduct("Laptop")}
+                            onClick={() => filerProduct("electronics")}
                           >
                             Electronics{" "}
                           </a>
@@ -129,8 +124,12 @@ const Products = ({ activeTab }) => {
                           </a>
                         </li>
                         <li>
-                          <a href="#" className="text-dark">
-                            Underwears{" "}
+                          <a
+                            href="#"
+                            className="text-dark"
+                            onClick={() => filerProduct("kids")}
+                          >
+                            kids{" "}
                           </a>
                         </li>
                         <li>
@@ -145,22 +144,13 @@ const Products = ({ activeTab }) => {
                         </li>
                       </ul>
                     </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingTwo">
-                    <button
-                      className="accordion-button text-dark bg-light"
-                      type="button"
-                      data-mdb-toggle="collapse"
-                      data-mdb-target="#panelsStayOpen-collapseTwo"
-                      aria-expanded="true"
-                      aria-controls="panelsStayOpen-collapseTwo"
-                    >
-                      Brands
-                    </button>
-                  </h2>
-                  <div
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>
+                    <div className="text-dark ">Brands</div>
+                  </Accordion.Header>
+                  <Accordion.Body
                     id="panelsStayOpen-collapseTwo"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingTwo"
@@ -280,22 +270,13 @@ const Products = ({ activeTab }) => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingThree">
-                    <button
-                      className="accordion-button text-dark bg-light"
-                      type="button"
-                      data-mdb-toggle="collapse"
-                      data-mdb-target="#panelsStayOpen-collapseThree"
-                      aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapseThree"
-                    >
-                      Price
-                    </button>
-                  </h2>
-                  <div
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>
+                    <div className="text-dark ">Price</div>
+                  </Accordion.Header>
+                  <Accordion.Body
                     id="panelsStayOpen-collapseThree"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingThree"
@@ -343,23 +324,14 @@ const Products = ({ activeTab }) => {
                         apply
                       </button>
                     </div>
-                  </div>
-                </div>
+                  </Accordion.Body>
+                </Accordion.Item>
 
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingThree">
-                    <button
-                      className="accordion-button text-dark bg-light"
-                      type="button"
-                      data-mdb-toggle="collapse"
-                      data-mdb-target="#panelsStayOpen-collapseFive"
-                      aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapseFive"
-                    >
-                      Ratings
-                    </button>
-                  </h2>
-                  <div
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>
+                    <div className="text-dark ">Ratings</div>
+                  </Accordion.Header>
+                  <Accordion.Body
                     id="panelsStayOpen-collapseFive"
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingThree"
@@ -444,54 +416,31 @@ const Products = ({ activeTab }) => {
                         </label>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
           </div>
 
-          <nav
+          {/* <Pagination
             aria-label="Page navigation example"
             className="d-flex justify-content-center mt-3"
           >
-            <ul className="pagination">
-              <li className="page-item disabled">
-                <a className="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li className="page-item active">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  4
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  5
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+            <Pagination.Prev />
+
+            <Pagination.Ellipsis />
+            <Pagination.Item>{1}</Pagination.Item>
+            <Pagination.Item>{2}</Pagination.Item>
+            <Pagination.Item>{3}</Pagination.Item>
+            <Pagination.Item>{4}</Pagination.Item>
+
+            <Pagination.Ellipsis />
+
+            <Pagination.Next />
+          </Pagination> */}
+          {/* <>
+            <Pagi />
+          </> */}
         </section>
       </>
     );
@@ -508,8 +457,11 @@ const Products = ({ activeTab }) => {
           console.log("product: ", product);
           return (
             <>
-              <div className="col-lg-4 col-md-6 col-sm-6 d-flex">
-                <div className="card w-100 my-2 shadow-2-strong product-body">
+              <div
+                className="col-lg-4 col-md-6 col-sm-6 d-flex"
+                onClick={() => handleById(product?._id)}
+              >
+                <div className="card w-100 my-2 shadow-2-strong product-body card2">
                   <div className="product-img">
                     {product.images && (
                       <img
@@ -551,12 +503,69 @@ const Products = ({ activeTab }) => {
     );
   };
 
+  const Showproductslist = () => {
+    const handleById = (id) => {
+      console.log(id, "id");
+      Navigate(`/products/${id}`, { state: { id: id } });
+    };
+    return (
+      <>
+        {filter.map((product) => {
+          console.log("product: ", product);
+          return (
+            <>
+              <div
+                className="col-lg-6 col-md-6 col-sm-6 d-flex bd-highlight"
+                onClick={() => handleById(product?._id)}
+              >
+                <div className="card w-100 my-2 shadow-2-strong product-body card2 d-flex flex-row">
+                  <div className="product-img card_width">
+                    {product.images && (
+                      <img
+                        src={product.images[0].url}
+                        className="card-img-top h-100"
+                      />
+                    )}
+                  </div>
+                  <div className="card-body d-flex flex-column">
+                    <div className="d-flex flex-row mt-5  ">
+                      <h5 className="mb-1 me-1 ">${product.price}</h5>
+                      <span className="text-danger">
+                        <s>$49.99</s>
+                      </span>
+                    </div>
+                    <p className="card-text mt-3">{product.name}</p>
+                    <div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                      <Button
+                        href="#!"
+                        className="btn btn-primary shadow-0 me-1"
+                        onClick={() => handleById(product?._id)}
+                      >
+                        Add to cart
+                      </Button>
+                      <a
+                        href="#!"
+                        className="btn btn-light border icon-hover px-2 pt-2"
+                      >
+                        <i className="fa fa-heart fa-lg text-secondary px-1 heart"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </>
+    );
+  };
+
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
-        <div className="container  ">
+        <div className="container grid-container ">
           <div className="row mt-5 mx-0">
             {activeTab != "1" && (
               <div className="col-3">
@@ -576,13 +585,22 @@ const Products = ({ activeTab }) => {
                     <option value="3">Randomly</option>
                   </select>
                   <div className="btn-group shadow-0 border">
-                    <a href="#" className="btn btn-light" title="List view">
+                    <a
+                      className="btn btn-light"
+                      title="List view"
+                      onClick={() => {
+                        setView(true);
+                      }}
+                    >
                       <i className="fa fa-bars fa-lg"></i>
                     </a>
+
                     <a
-                      href="#"
-                      className="btn btn-light active"
+                      className="btn btn-light "
                       title="Grid view"
+                      onClick={() => {
+                        setView(false);
+                      }}
                     >
                       <i className="fa fa-th fa-lg"></i>
                     </a>
@@ -590,7 +608,16 @@ const Products = ({ activeTab }) => {
                 </div>
               </header>
               <div className="row mb-5">
-                <Showproducts />
+                {view === true ? (
+                  <>
+                    <Showproductslist />
+                  </>
+                ) : (
+                  <>
+                    <Showproducts />
+                    {/* <Pagi /> */}
+                  </>
+                )}
               </div>
             </div>
           </div>
