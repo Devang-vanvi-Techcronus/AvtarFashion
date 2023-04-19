@@ -205,7 +205,6 @@ export default function Cart() {
     <>
       {state.length === 0 && <EmptyCart />}
       {state.length !== 0 && cartItems()}
-      {/* <h1 className='mx-5 my-4'>{'your total cart value is : $ {price}'} </h1> */}
     </>
   );
 }

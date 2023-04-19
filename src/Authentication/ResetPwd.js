@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { validatePassword, validcPassword } from "../utils/validations";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { postWithoutToken, putWithoutToken } from "../Api/allApi";
+import { putWithoutToken } from "../Api/allApi";
 import { toast } from "react-toastify";
 import RESETIMG from "../assets/image/12.png";
 
@@ -58,7 +58,6 @@ const ResetPwd = () => {
     }
 
     let payload = {
-      // token: token,
       password: values.password,
       confirmPassword: values.cpassword,
     };

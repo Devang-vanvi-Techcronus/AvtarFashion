@@ -1,13 +1,10 @@
 const cart = [];
 
 export const handleCart = (state = cart, action) => {
-  // const product = action.payload;
-  // console.log(product, "prooo");
-
   switch (action.type) {
     case "ADDTOITEM":
       const productss = action.payload;
-      // console.log(product);
+
       const exisst = state.find((x) => x._id === productss._id);
       console.log(exisst, "exist");
       if (exisst) {
@@ -18,7 +15,7 @@ export const handleCart = (state = cart, action) => {
       return [...state, { ...productss, qty: 1 }];
     case "ADDITEM":
       const product = action.payload;
-      // console.log(product);
+
       const exist = state.find((x) => x._id === product._id);
       console.log(exist, "exist");
       if (exist) {

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import axios from "../Api/axios";
 import { validateEmail, validatePassword } from "../utils/validations";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API } from "../Api/helper/backendAPi";
 import { postWithoutToken, setLocalStorage } from "../Api/allApi";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -155,7 +153,6 @@ const Login = () => {
                   <div className="h-45 d-grid ">
                     <button
                       type="submit"
-                      // onClick={onSubmit}
                       className="btn btn-outline-primary btn-sm btn-block c-btn "
                     >
                       Sign in

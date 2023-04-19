@@ -254,11 +254,6 @@ button.btn.btn-show-eye {
 .h-250 {
   height: 250px;
 }
-/* .w-18 {
-  width: "18rem" !important;
-} */
-
-/* products */
 
 .row.width-30 {
   width: 30% !important;
@@ -393,7 +388,6 @@ img {
 }
 section {
   padding: 60px 0;
-  /* min-height: 100vh;*/
 }
 
 .sec-title {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import axios from "../Api/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -10,7 +9,6 @@ import {
   validName,
   validcPassword,
 } from "../utils/validations";
-import { API } from "../Api/helper/backendAPi";
 import { postWithoutToken, setLocalStorage } from "../Api/allApi";
 import { Notification } from "../utils/Notification";
 import SIGNUPIMG from "../../src/assets/image/12.png";
@@ -21,18 +19,16 @@ const DefaultValues = {
   name: "",
   email: "",
   password: "",
-  // cpassword: "",
 };
 const SignUp = () => {
   const [showPwd, setShowPwd] = useState(false);
-  // const [showPwd1, setShowPwd1] = useState(false);
+
   const [values, setValues] = useState(DefaultValues);
   const [loading, setloading] = useState(false);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     password: "",
-    // cpassword: "",
   });
 
   const handleChange = (e) => {
@@ -50,7 +46,6 @@ const SignUp = () => {
     const fullnameError = validName(values.name);
     const emailError = validateEmail(values.email);
     const pwdError = validatePassword(values.password);
-    // const cpwdError = validcPassword(values);
 
     if (fullnameError) {
       tempErrors = { ...tempErrors, name: fullnameError };
@@ -64,10 +59,7 @@ const SignUp = () => {
       tempErrors = { ...tempErrors, password: pwdError };
       valid = false;
     }
-    // if (cpwdError) {
-    //   tempErrors = { ...tempErrors, cpassword: cpwdError };
-    //   valid = false;
-    // }
+
     setErrors(tempErrors);
     return valid;
   };
@@ -177,35 +169,6 @@ const SignUp = () => {
                       </p>
                     )}
                   </div>
-                  {/* <div className="form-outline mb-3">
-                  <label className="form-label" htmlFor="form1Example23">
-                    Confirm Password
-                  </label>
-                  <div class="input-group mb-3">
-                    <input
-                      type={showPwd1 ? "text" : "password"}
-                      name="cpassword"
-                      id="form1Example23"
-                      onChange={handleChange}
-                      placeholder="**********"
-                      value={values.cpassword}
-                      error={errors.cpassword}
-                      className="form-control form-control-lg"
-                    />
-                    <button
-                      className="btn btn-show-eye"
-                      type="button"
-                      onClick={() => setShowPwd1(!showPwd1)}
-                    >
-                      {!showPwd1 ? <AiFillEye /> : <AiFillEyeInvisible />}
-                    </button>
-                  </div>
-                  {errors.cpassword && (
-                    <p className="text-danger insta-smart-error">
-                      {errors.cpassword}
-                    </p>
-                  )}
-                </div> */}
 
                   <div className="d-flex justify-content-end align-items-start mb-4">
                     <div className="form-check me-2">

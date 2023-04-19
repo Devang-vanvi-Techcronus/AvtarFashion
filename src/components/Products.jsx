@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getProducts from "../Api/helper/coreapicall";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Loading from "../utils/Loader";
 import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
@@ -24,7 +22,6 @@ const Products = ({ activeTab }) => {
         if (response) {
           console.log(response.products, "responseee");
           toast.dismiss();
-          // toast.success(Notification.TOST_SUCESS);
           setloading(false);
           setData(response.products);
           setFilter(response.products);
@@ -368,7 +365,6 @@ const Products = ({ activeTab }) => {
                     aria-labelledby="headingThree"
                   >
                     <div className="accordion-body">
-                      {/* <!-- Default checkbox --> */}
                       <div className="form-check">
                         <input
                           className="form-check-input"
@@ -388,7 +384,6 @@ const Products = ({ activeTab }) => {
                           <i className="fa fa-star text-warning"></i>
                         </label>
                       </div>
-                      {/* <!-- Default checkbox --> */}
                       <div className="form-check">
                         <input
                           className="form-check-input"
@@ -408,7 +403,7 @@ const Products = ({ activeTab }) => {
                           <i className="fa fa-star text-secondary"></i>
                         </label>
                       </div>
-                      {/* <!-- Default checkbox --> */}
+
                       <div className="form-check">
                         <input
                           className="form-check-input"
@@ -428,7 +423,7 @@ const Products = ({ activeTab }) => {
                           <i className="fa fa-star text-secondary"></i>
                         </label>
                       </div>
-                      {/* <!-- Default checkbox --> */}
+
                       <div className="form-check">
                         <input
                           className="form-check-input"
