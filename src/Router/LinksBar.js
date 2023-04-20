@@ -8,6 +8,7 @@ import { isAuthenticated } from "../utils/common";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useSelector } from "react-redux";
+const { name } = JSON.parse(isAuthenticated().user);
 
 const LinksBar = () => {
   const state = useSelector((state) => state.handleCart);
@@ -80,6 +81,13 @@ const LinksBar = () => {
         </ul>
       </Nav>
       <Nav>
+        <Nav.Link className="nav-item">
+          <NavLink to="/profile" className="nav-link">
+            {/* <i class="fa fa-user-circle-o fa-lg me-2" aria-hidden="true"></i> */}
+            {isAuthenticated().user ? name : ""}
+            <i class="fa fa-user-circle fa-lg ms-2" aria-hidden="true"></i>
+          </NavLink>
+        </Nav.Link>
         <Nav.Link className="nav-item">
           <Link to="/cart" className="nav-link cart1">
             {isAuthenticated().token != null ? (

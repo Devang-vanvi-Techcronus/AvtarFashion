@@ -8,50 +8,37 @@ import { Notification } from "../utils/Notification";
 import { NavLink, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import Pagination from "react-bootstrap/Pagination";
-import ReactPagination from "react-paginate";
 import Pagi from "../utils/Pagi";
 
 const Products = ({ activeTab }) => {
   console.log(activeTab, "activeTab");
   const [data, setData] = useState([]);
-  const [item, setItem] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState([data]);
   const [loading, setloading] = useState([false]);
   const [view, setView] = useState(false);
-  const [listData, setListData] = useState("1");
-  console.log("listData: ", listData);
   const Navigate = useNavigate();
 
   useEffect(() => {
     setloading(true);
-    getProduct();
-    getfilterProduct();
+
+    getWithoutToken(PRODUCTS_URL)
+      .then((response) => {
+        if (response) {
+          console.log(response.products, "responseee");
+          toast.dismiss();
+          setloading(false);
+          setData(response.products);
+          setFilter(response.products);
+        } else if (response.status == 401) {
+          toast.error(Notification.TOST_401_ERROR);
+        } else {
+          toast.error(Notification.TOST_401_ERROR);
+        }
+      })
+      .catch((response) => {
+        toast.error(Notification.TOST_500_ERROR);
+      });
   }, []);
-
-  const getProduct = () => {
-    getWithoutToken(`/product?page=${currentPage}`).then((response) => {
-      setFilter(response.products);
-      setloading(false);
-    });
-  };
-
-  const getfilterProduct = () => {
-    getWithoutToken(PRODUCTS_URL).then((response) => {
-      if (response) {
-        setData(response.products);
-        setFilter(response.products);
-        setloading(false);
-      }
-    });
-  };
-
-  const handlepageClick = (page) => {
-    console.log(page, "page ,,,");
-    console.log(page.selected, "page selected");
-    setCurrentPage(page.selected);
-    getProduct();
-  };
 
   const filerProduct = (cat) => {
     const updateList = data.filter((x) => x.category === cat);
@@ -118,22 +105,17 @@ const Products = ({ activeTab }) => {
                           </a>
                         </li>
                         <li>
+                          <a href="#" className="text-dark">
+                            Books, Magazines{" "}
+                          </a>
+                        </li>
+                        <li>
                           <a
                             href="#"
                             className="text-dark"
                             onClick={() => filerProduct("men's clothing")}
                           >
                             Men's clothing{" "}
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="#"
-                            className="text-dark"
-                            onClick={() => filerProduct("women's clothing")}
-                          >
-                            Women's clothing{" "}
                           </a>
                         </li>
                         <li>
@@ -145,27 +127,19 @@ const Products = ({ activeTab }) => {
                           <a
                             href="#"
                             className="text-dark"
-                            onClick={() => filerProduct("Kids")}
+                            onClick={() => filerProduct("kids")}
                           >
                             kids{" "}
                           </a>
                         </li>
                         <li>
-                          <a
-                            href="#"
-                            className="text-dark"
-                            onClick={() => filerProduct("Bags & Footwear")}
-                          >
-                            Bags & Footwear
+                          <a href="#" className="text-dark">
+                            Shoes for men{" "}
                           </a>
                         </li>
                         <li>
-                          <a
-                            href="#"
-                            className="text-dark"
-                            onClick={() => filerProduct("Beauty & Health")}
-                          >
-                            Beauty & Health
+                          <a href="#" className="text-dark">
+                            Accessories{" "}
                           </a>
                         </li>
                       </ul>
@@ -455,7 +429,7 @@ const Products = ({ activeTab }) => {
             <Pagination.Prev />
 
             <Pagination.Ellipsis />
-            <Pagination.Item >{1}</Pagination.Item>
+            <Pagination.Item>{1}</Pagination.Item>
             <Pagination.Item>{2}</Pagination.Item>
             <Pagination.Item>{3}</Pagination.Item>
             <Pagination.Item>{4}</Pagination.Item>
@@ -467,103 +441,121 @@ const Products = ({ activeTab }) => {
           {/* <>
             <Pagi />
           </> */}
-          {/* <ShowpagiData /> */}
         </section>
       </>
     );
   };
 
-  const ShowpagiData = () => {
+  const Showproducts = () => {
     const handleById = (id) => {
       console.log(id, "id");
       Navigate(`/products/${id}`, { state: { id: id } });
     };
     return (
       <>
-        <div className="row mb-5">
-          <>
-            {filter.map((product) => {
-              return (
-                <>
-                  <div
-                    className={`${
-                      listData == "1"
-                        ? "col-lg-6 col-md-6 col-sm-12 col-12"
-                        : "col-lg-4 col-md-4 col-sm-12 col-12"
-                    } d-flex`}
-                    onClick={() => handleById(product?._id)}
-                  >
-                    <div
-                      className={`card w-100 my-2 shadow-2-strong product-body card2 ${
-                        listData == "1" ? "d-flex flex-row" : ""
-                      }`}
-                    >
-                      <div
-                        className={`product-img ${
-                          listData == "1" ? "card_width" : ""
-                        }`}
+        {filter.map((product) => {
+          console.log("product: ", product);
+          return (
+            <>
+              <div
+                className="col-lg-4 col-md-6 col-sm-6 d-flex"
+                onClick={() => handleById(product?._id)}
+              >
+                <div className="card w-100 my-2 shadow-2-strong product-body card2">
+                  <div className="product-img">
+                    {product.images && (
+                      <img
+                        src={product.images[0].url}
+                        className="card-img-top h-100"
+                      />
+                    )}
+                  </div>
+                  <div className="card-body d-flex flex-column">
+                    <div className="d-flex flex-row">
+                      <h5 className="mb-1 me-1">${product.price}</h5>
+                      <span className="text-danger">
+                        <s>$49.99</s>
+                      </span>
+                    </div>
+                    <p className="card-text">{product.name}</p>
+                    <div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                      <Button
+                        href="#!"
+                        className="btn btn-primary shadow-0 me-1"
+                        onClick={() => handleById(product?._id)}
                       >
-                        {product.images && (
-                          <img
-                            src={product.images[0].url}
-                            className="card-img-top h-100 img-fluid"
-                          />
-                        )}
-                      </div>
-                      <div className="card-body d-flex flex-column">
-                        <div
-                          className={`d-flex flex-row ${
-                            listData == "1" ? "mt-3" : "mt-0"
-                          }`}
-                        >
-                          <h5 className="mb-1 me-1">${product.price}</h5>
-                          <span className="text-danger">
-                            <s>$49.99</s>
-                          </span>
-                        </div>
-                        <p className="card-text">{product.name}</p>
-                        <div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <Button
-                            href="#!"
-                            className="btn btn-primary shadow-0 me-1"
-                            onClick={() => handleById(product?._id)}
-                          >
-                            Add to cart
-                          </Button>
-                          <a
-                            href="#!"
-                            className="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i className="fa fa-heart fa-lg text-secondary px-1 heart"></i>
-                          </a>
-                        </div>
-                      </div>
+                        Add to cart
+                      </Button>
+                      <a
+                        href="#!"
+                        className="btn btn-light border icon-hover px-2 pt-2"
+                      >
+                        <i className="fa fa-heart fa-lg text-secondary px-1 heart"></i>
+                      </a>
                     </div>
                   </div>
-                </>
-              );
-            })}
-          </>
-        </div>
-        <div>
-          <ReactPagination
-            previousLabel="previous"
-            nextLabel="next"
-            breakLabel="..."
-            pageCount={4}
-            marginPagesDisplayed={3}
-            pageRangeDisplayed={8}
-            onPageChange={handlepageClick}
-            containerClassName={"pagination"}
-            pageClassName={"page-item"}
-            pageLinkClassName={"page-link"}
-            previousClassName={"page-item"}
-            previousLinkClassName={"page-link"}
-            nextClassName={"page-item"}
-            nextLinkClassName={"page-link"}
-            activeClassName={"active"}
-          />
-        </div>
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </>
+    );
+  };
+
+  const Showproductslist = () => {
+    const handleById = (id) => {
+      console.log(id, "id");
+      Navigate(`/products/${id}`, { state: { id: id } });
+    };
+    return (
+      <>
+        {filter.map((product) => {
+          console.log("product: ", product);
+          return (
+            <>
+              <div
+                className="col-lg-6 col-md-6 col-sm-6 d-flex bd-highlight"
+                onClick={() => handleById(product?._id)}
+              >
+                <div className="card w-100 my-2 shadow-2-strong product-body card2 d-flex flex-row">
+                  <div className="product-img card_width">
+                    {product.images && (
+                      <img
+                        src={product.images[0].url}
+                        className="card-img-top h-100"
+                      />
+                    )}
+                  </div>
+                  <div className="card-body d-flex flex-column">
+                    <div className="d-flex flex-row mt-5  ">
+                      <h5 className="mb-1 me-1 ">${product.price}</h5>
+                      <span className="text-danger">
+                        <s>$49.99</s>
+                      </span>
+                    </div>
+                    <p className="card-text mt-3">{product.name}</p>
+                    <div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                      <Button
+                        href="#!"
+                        className="btn btn-primary shadow-0 me-1"
+                        onClick={() => handleById(product?._id)}
+                      >
+                        Add to cart
+                      </Button>
+                      <a
+                        href="#!"
+                        className="btn btn-light border icon-hover px-2 pt-2"
+                      >
+                        <i className="fa fa-heart fa-lg text-secondary px-1 heart"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </>
     );
   };
@@ -597,7 +589,7 @@ const Products = ({ activeTab }) => {
                       className="btn btn-light"
                       title="List view"
                       onClick={() => {
-                        setListData("1");
+                        setView(true);
                       }}
                     >
                       <i className="fa fa-bars fa-lg"></i>
@@ -607,7 +599,7 @@ const Products = ({ activeTab }) => {
                       className="btn btn-light "
                       title="Grid view"
                       onClick={() => {
-                        setListData("2");
+                        setView(false);
                       }}
                     >
                       <i className="fa fa-th fa-lg"></i>
@@ -615,7 +607,18 @@ const Products = ({ activeTab }) => {
                   </div>
                 </div>
               </header>
-              <div>{listData && <ShowpagiData />}</div>
+              <div className="row mb-5">
+                {view === true ? (
+                  <>
+                    <Showproductslist />
+                  </>
+                ) : (
+                  <>
+                    {/* <Showproducts /> */}
+                    <Pagi />
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -623,4 +626,5 @@ const Products = ({ activeTab }) => {
     </>
   );
 };
+
 export default Products;
