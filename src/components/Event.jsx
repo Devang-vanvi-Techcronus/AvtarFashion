@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "react-bootstrap/Card";
 
 const Event = () => {
   return (
@@ -7,52 +8,59 @@ const Event = () => {
         <div className="p-5">
           <h1>Newest fashion</h1>
         </div>
-        <div className="row">
-          <div className="col-lg-4 ">
-            <div className="flip-box-inner">
-              <div className="card w-18 ">
-                <img
-                  src="https://images.unsplash.com/photo-1565208565380-02138793c3b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                  className="first-image"
-                />
-                <div className="card-body">
-                  <center>
-                    <h5 className="card-title">Black Pants</h5>
-                  </center>
+        <div className="row justify-content-center align-items-center h-80vh mt-3">
+          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+            <div className="flip-box">
+              <div className="flip-box-inner">
+                <div className="flip-box-front">
+                  <img src="https://images.unsplash.com/photo-1565208565380-02138793c3b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
+                </div>
+                <div className="flip-box-back">
+                  <h2>Jeans</h2>
+                  <p>
+                    We provide unique gifting ideas & products that will have a
+                    long-lasting impact on customers.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="col-lg-4 flip-box">
-            <div className="flip-box-inner">
-              <div className="card w-18 flip-box-front">
-                <img
-                  src="https://images.unsplash.com/photo-1549062572-544a64fb0c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-                  className="first-image"
-                />
-                <div className="card-body">
-                  <center>
-                    <h5 className="card-title">T-shirt</h5>
-                  </center>
+          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+            <div className="flip-box">
+              <div className="flip-box-inner">
+                <div className="flip-box-front">
+                  <img src="https://images.unsplash.com/photo-1549062572-544a64fb0c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" />
+                </div>
+                <div className="flip-box-back">
+                  <h2>T-shirt</h2>
+                  <p>
+                    Look hot on your date dressed in a little black dress, or
+                    opt for red dresses for a sassy vibe. Striped dresses and
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-4 ">
-            <div className="card w-18">
-              <img
-                src="https://images.unsplash.com/photo-1565279586461-293ae487de37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                className="first-image"
-              />
-              <div className="card-body">
-                <center>
-                  <h5 className="card-title">Pants</h5>
-                </center>
+
+          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+            <div className="flip-box">
+              <div className="flip-box-inner">
+                <div className="flip-box-front">
+                  <img src="https://images.unsplash.com/photo-1565279586461-293ae487de37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
+                </div>
+                <div className="flip-box-back">
+                  <h2>Tops</h2>
+                  <p>
+                    Choose your favourites from among Bardot, off-shoulder,
+                    shirt-style, blouson, embroidered and peplum tops.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="sec-title">
           <span className="title pt-5">About Event</span>
           <h2>

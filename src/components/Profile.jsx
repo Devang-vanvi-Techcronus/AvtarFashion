@@ -1,8 +1,14 @@
 import React from "react";
 import { isAuthenticated } from "../utils/common";
+import { useEffect, useState } from "react";
 
-const { name, email, createdAt } = JSON.parse(isAuthenticated().user);
 const Profile = () => {
+  const [dataStorage, setDataStorage] = useState("Hello");
+  useEffect(() => {
+    let data = JSON.parse(isAuthenticated().user);
+    console.log("data: ", data);
+    setDataStorage(data);
+  }, []);
   return (
     <>
       <div className="container rounded bg-white mt-5 mb-5 ">
@@ -14,12 +20,8 @@ const Profile = () => {
                 width="150px"
                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
               />
-              <span className="font-weight-bold">
-                {isAuthenticated().user ? name : ""}
-              </span>
-              <span className="text-black-50">
-                {isAuthenticated().user ? email : ""}
-              </span>
+              <span className="font-weight-bold">{dataStorage?.name}</span>
+              <span className="text-black-50">{dataStorage?.email}</span>
               <span> </span>
             </div>
           </div>
@@ -35,7 +37,7 @@ const Profile = () => {
                     type="text"
                     className="form-control"
                     placeholder="first name"
-                    value={isAuthenticated().user ? name : ""}
+                    value={dataStorage?.name}
                   />
                 </div>
                 <div className="col-md-6">
@@ -43,7 +45,7 @@ const Profile = () => {
                   <input
                     type="text"
                     className="form-control"
-                    value={isAuthenticated().user ? createdAt.slice(0, 10) : ""}
+                    value={dataStorage?.createdAt?.slice(0, 10)}
                     placeholder="create at"
                   />
                 </div>
@@ -55,7 +57,7 @@ const Profile = () => {
                     type="email"
                     className="form-control"
                     placeholder="enter email id"
-                    value={isAuthenticated().user ? email : ""}
+                    value={dataStorage?.email}
                   />
                 </div>
               </div>

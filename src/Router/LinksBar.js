@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { clearLocalStorage, getLocalStorage } from "../Api/allApi";
+import {
+  clearLocalStorage,
+  getLocalStorage,
+  setLocalStorage,
+} from "../Api/allApi";
 import { useEffect } from "react";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
@@ -8,16 +12,21 @@ import { isAuthenticated } from "../utils/common";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useSelector } from "react-redux";
-const { name } = JSON.parse(isAuthenticated().user);
 
 const LinksBar = () => {
   const state = useSelector((state) => state.handleCart);
+  const [dataStorage, setDataStorage] = useState("Hello");
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Logout
     </Tooltip>
   );
 
+  useEffect(() => {
+    let data = JSON.parse(isAuthenticated().user);
+    console.log("data: ", data);
+    setDataStorage(data);
+  }, []);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -26,68 +35,72 @@ const LinksBar = () => {
   };
   return (
     <>
-      <Nav className="me-auto">
+      <Nav className="me-auto d-flex justify-content-center align-items-center m-auto">
         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-          <Nav.Link className="nav-item">
-            <NavLink to="/" className="nav-link">
+          <Nav.Link className="nav-item ">
+            <NavLink to="/" className="nav-link nav-link-grow-up">
               Home
             </NavLink>
           </Nav.Link>
-          <Nav.Link className="nav-item">
-            <NavLink to="/products" className="nav-link">
+          <Nav.Link className="nav-item ">
+            <NavLink to="/products" className="nav-link nav-link-grow-up">
               Products
             </NavLink>
           </Nav.Link>
-          <Nav.Link className="nav-item">
-            <NavLink to="/about" className="nav-link">
+          <Nav.Link className="nav-item ">
+            <NavLink to="/about" className="nav-link nav-link-grow-up">
               About
             </NavLink>
           </Nav.Link>
+          {isAuthenticated().token && (
+            <>
+              <Nav.Link className="nav-item">
+                <Link to="/services" className="nav-link nav-link-grow-up">
+                  Services
+                </Link>
+              </Nav.Link>
+              <Nav.Link className="nav-item">
+                <NavLink to="/events" className="nav-link nav-link-grow-up">
+                  Events
+                </NavLink>
+              </Nav.Link>
+            </>
+          )}
+
           <Nav.Link className="nav-item">
-            <Link to="/services" className="nav-link">
-              Services
-            </Link>
-          </Nav.Link>
-          <Nav.Link className="nav-item">
-            <NavLink to="/events" className="nav-link">
-              Events
-            </NavLink>
-          </Nav.Link>
-          <Nav.Link className="nav-item">
-            <NavLink to="/contactus" className="nav-link">
+            <NavLink to="/contactus" className="nav-link nav-link-grow-up">
               contact us
             </NavLink>
           </Nav.Link>
           {!isAuthenticated().token && (
             <>
               <Nav.Link className="nav-item">
-                <NavLink to="/login" className="nav-link">
+                <NavLink to="/login" className="nav-link  nav-link-grow-up">
                   login
                 </NavLink>
               </Nav.Link>
               <Nav.Link className="nav-item">
-                <NavLink to="/signup" className="nav-link">
+                <NavLink to="/signup" className="nav-link nav-link-grow-up">
                   Signup
                 </NavLink>
               </Nav.Link>
             </>
           )}
-          <Nav.Link className="nav-item">
-            <a className="nav-link" href="#">
-              <i className="fa fa-search me-2"></i>
-              <input type="text" className="searchbox" name="search" />
-            </a>
-          </Nav.Link>
         </ul>
       </Nav>
       <Nav>
-        <Nav.Link className="nav-item">
-          <NavLink to="/profile" className="nav-link">
-            {/* <i class="fa fa-user-circle-o fa-lg me-2" aria-hidden="true"></i> */}
-            {isAuthenticated().user ? name : ""}
-            <i class="fa fa-user-circle fa-lg ms-2" aria-hidden="true"></i>
-          </NavLink>
-        </Nav.Link>
+        {isAuthenticated().token && (
+          <Nav.Link className="nav-item">
+            <NavLink
+              to="/profile"
+              className="nav-link d-flex align-items-center "
+            >
+              {dataStorage?.name}
+              <i class="fa fa-user-circle fa-lg ms-2" aria-hidden="true"></i>
+            </NavLink>
+          </Nav.Link>
+        )}
+
         <Nav.Link className="nav-item">
           <Link to="/cart" className="nav-link cart1">
             {isAuthenticated().token != null ? (

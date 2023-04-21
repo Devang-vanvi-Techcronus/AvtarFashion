@@ -8,7 +8,7 @@ const Navigationbar = () => {
     <>
       <Navbar
         collapseOnSelect
-        expand="lg"
+        expand="xl"
         className="theme-blue-footer"
         variant="dark"
       >

@@ -1,7 +1,7 @@
 import React from "react";
 import { isAuthenticated } from "../utils/common";
 
-const { name, email } = JSON.parse(isAuthenticated().user);
+// const { name, email } = JSON.parse(isAuthenticated().user);
 const ContactUs = () => {
   return (
     <>
@@ -28,7 +28,7 @@ const ContactUs = () => {
                   type="text"
                   name="fullname"
                   id="form1Example13"
-                  value={isAuthenticated().user ? name : ""}
+                  // value={isAuthenticated().user ? name : ""}
                   className="form-control form-control-lg"
                 />
               </div>
@@ -39,7 +39,7 @@ const ContactUs = () => {
                 <input
                   type="email"
                   name="email"
-                  value={isAuthenticated().user ? email : ""}
+                  // value={isAuthenticated().user ? email : ""}
                   id="form1Example13"
                   className="form-control form-control-lg"
                 />

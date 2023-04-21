@@ -55,6 +55,7 @@ const Products = ({ activeTab }) => {
 
   const filerProduct = (cat) => {
     const updateList = data.filter((x) => x.category === cat);
+    console.log(updateList, "updatedlisttt");
     setFilter(updateList);
   };
 
@@ -137,24 +138,19 @@ const Products = ({ activeTab }) => {
                           </a>
                         </li>
                         <li>
-                          <a href="#" className="text-dark">
-                            Interiors items{" "}
-                          </a>
-                        </li>
-                        <li>
                           <a
                             href="#"
                             className="text-dark"
                             onClick={() => filerProduct("Kids")}
                           >
-                            kids{" "}
+                            Kids{" "}
                           </a>
                         </li>
                         <li>
                           <a
                             href="#"
                             className="text-dark"
-                            onClick={() => filerProduct("Bags & Footwear")}
+                            onClick={() => filerProduct("Footwear")}
                           >
                             Bags & Footwear
                           </a>
@@ -163,7 +159,7 @@ const Products = ({ activeTab }) => {
                           <a
                             href="#"
                             className="text-dark"
-                            onClick={() => filerProduct("Beauty & Health")}
+                            onClick={() => filerProduct("Beauty")}
                           >
                             Beauty & Health
                           </a>
@@ -447,27 +443,6 @@ const Products = ({ activeTab }) => {
               </Accordion>
             </div>
           </div>
-
-          {/* <Pagination
-            aria-label="Page navigation example"
-            className="d-flex justify-content-center mt-3"
-          >
-            <Pagination.Prev />
-
-            <Pagination.Ellipsis />
-            <Pagination.Item >{1}</Pagination.Item>
-            <Pagination.Item>{2}</Pagination.Item>
-            <Pagination.Item>{3}</Pagination.Item>
-            <Pagination.Item>{4}</Pagination.Item>
-
-            <Pagination.Ellipsis />
-
-            <Pagination.Next />
-          </Pagination> */}
-          {/* <>
-            <Pagi />
-          </> */}
-          {/* <ShowpagiData /> */}
         </section>
       </>
     );
