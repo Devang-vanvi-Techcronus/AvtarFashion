@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { addCart, delCart } from "../redux/action";
+import { addCart, delCart, removeItemsFromCart } from "../redux/action";
 import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import EmptyCart from "./EmptyCart";
@@ -23,12 +23,14 @@ export default function Cart() {
   }, []);
 
   const handleAdd = (product) => {
-    console.log("product: ", product);
-
     dispatch(addCart(product));
   };
   const handleDel = (product) => {
     dispatch(delCart(product));
+  };
+  const deleteCartItems = (product) => {
+    console.log(product._id, "ppppp");
+    dispatch(removeItemsFromCart(product._id));
   };
 
   const cartItems = (product) => {
@@ -74,6 +76,7 @@ export default function Cart() {
                               className="btn btn-primary btn-sm me-1 mb-2"
                               data-mdb-toggle="tooltip"
                               title="Remove item"
+                              onClick={() => deleteCartItems(data)}
                             >
                               <i className="fa fa-trash"></i>
                             </button>

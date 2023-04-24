@@ -36,6 +36,12 @@ export const handleCart = (state = cart, action) => {
         );
       }
 
+    case "REMOVE_CART_ITEM":
+      return {
+        ...state,
+        cart: state.cart.filter((i) => i.product !== action.payload),
+      };
+
     default:
       return state;
   }

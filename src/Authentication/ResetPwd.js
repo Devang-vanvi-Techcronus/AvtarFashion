@@ -24,11 +24,7 @@ const ResetPwd = () => {
     code3: (Number = ""),
     code4: (Number = ""),
   });
-  const [counter, setCounter] = useState(120);
-  //
-  const [userEmail, setUserEmail] = useState("");
-  const [apiTokenData, setApiTokenData] = useState("");
-
+  const [counter, setCounter] = useState(60);
   const [showPwd, setShowPwd] = useState(false);
   const [showPwd1, setShowPwd1] = useState(false);
   const [values, setValues] = useState(DefaultValues);
@@ -36,11 +32,6 @@ const ResetPwd = () => {
     password: "",
     cpassword: "",
   });
-
-  // const { password, confirm_password } = values;
-  // const uid = window.location.href.split("/")[4];
-
-  const token = window.location.href.split("=")[1];
 
   const handleOtpInput = (e, item, i) => {
     const CurrentElement = document.getElementById(item);
@@ -59,13 +50,6 @@ const ResetPwd = () => {
     }
   };
 
-  useEffect(() => {
-    // addClassToBody("auth-page");
-    const token = window.location.href.split("/")[4];
-    setApiTokenData(token);
-    setUserEmail(JSON.parse(getLocalStorage("userEmail")));
-  }, []);
-
   const maxLengthCheck = (object) => {
     if (object.target.value.length > object.target.maxLength) {
       object.target.value = object.target.value.slice(
@@ -83,29 +67,6 @@ const ResetPwd = () => {
       }, 1000);
     return () => clearInterval(timer);
   }, [counter]);
-
-  const reSend = () => {
-    if (counter != 0) return;
-    if (apiTokenData) {
-      let reSendPayload = {
-        email: userEmail,
-      };
-      putWithoutToken("/password/reset")
-        .then((response) => {
-          if (response.status == 200) {
-            setCounter(60);
-            toast.dismiss();
-            toast.success(response.message);
-          } else if (response.status == 400) {
-            toast.error(response.message);
-          }
-        })
-        .catch((error) => {
-          toast.error("Something went wrong");
-        });
-    } else {
-    }
-  };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -158,18 +119,19 @@ const ResetPwd = () => {
 
       putWithoutToken("/password/reset", otpPayload)
         .then((response) => {
-          if (response.status == 200) {
-            toast.success(response.message);
-          } else if (response.status == 400) {
+          console.log(response, "dedede");
+          if (response.success == true) {
+            toast.success(Notification.TOST_SUCESS);
+          } else if (response.success == false) {
+            console.log(response.message, "errrrmssssg");
             toast.error(response.message);
+          } else {
+            toast.error(Notification.TOST_500_ERROR);
           }
         })
         .catch((error) => {
           toast.error("Something went wrong");
         });
-    } else {
-      toast.dismiss();
-      toast.error("OTP is not correct");
     }
   };
 
@@ -186,15 +148,13 @@ const ResetPwd = () => {
                 <h3>VERIFY YOUR ACCOUNT</h3>
               </div>
               <form onSubmit={handleSubmit}>
-                {/* ---------------------------- */}
-
                 <div className="login-title">
                   <h4 className="opensans-bold mb-0 text-themeBlack text-center"></h4>
                 </div>
                 <div className="form-group mb-3 position-relative">
                   <p className="opensans-regular">
-                    we have sent you an email at . Enter the code below to
-                    confirm your email address Have you not received the OTP?
+                    we have sent you an email . Enter the code below to confirm
+                    your email address Have you not received the OTP?
                   </p>
                   <div className="d-flex otp-input-field">
                     {Object.keys(otp).map((item, i) => (
@@ -220,9 +180,6 @@ const ResetPwd = () => {
                     ))}
                   </div>
                 </div>
-
-                {/* -------------------------------- */}
-
                 <div className="form-outline mb-3">
                   <label className="form-label" htmlFor="form1Example23">
                     Password
@@ -287,12 +244,6 @@ const ResetPwd = () => {
                   </p>
                   <div className="resend-otp">
                     Password ? &nbsp;
-                    <span
-                      onClick={reSend}
-                      style={{ opacity: counter != 0 && 0.2 }}
-                    >
-                      Please Resend
-                    </span>
                     <span style={{ color: "#083541", fontWeight: "bold" }}>
                       &nbsp; 00 : {counter < 10 ? `0${counter}` : counter}
                     </span>
