@@ -59,24 +59,23 @@ const Login = () => {
       return false;
     }
     setloading(true);
-    postWithoutToken(LOGIN_URL, values)
-      .then((response) => {
-        setloading(false);
+    postWithoutToken(LOGIN_URL, values).then((response) => {
+      setloading(false);
+      if (response.success == true) {
         if (response.status == 200) {
           toast.success(Notification.TOST_SUCESS);
           setAuth(values);
           setLocalStorage("apiToken", response.token);
           setLocalStorage("user", response.user);
           Navigate("/");
-        } else if (response.status == 401) {
-          toast.error(Notification.TOST_401_ERROR);
-        } else {
-          toast.error(Notification.TOST_401_ERROR);
         }
-      })
-      .catch((response) => {
+      } else if (response.success == false) {
+        console.log(response.message, "errrrmssssg");
+        toast.error(response.message);
+      } else {
         toast.error(Notification.TOST_500_ERROR);
-      });
+      }
+    });
 
     return true;
   };
@@ -87,7 +86,7 @@ const Login = () => {
         <Loading />
       ) : (
         <section className=" bg-white calcc">
-          <div className="container py-5 h-100">
+          <div className="container  h-100">
             <div className="row h-100  align-items-center justify-content-center hvh-80 ">
               <div className="col-md-8 col-lg-7 col-xl-6 text-center">
                 <img src={LOGINIMG} className="img-fluid" alt="image" />
@@ -164,7 +163,7 @@ const Login = () => {
                       OR
                     </p>
                   </div>
-                  <div className="d-flex justify-content-around align-items-center h-45">
+                  <div className="d-flex justify-content-around align-items-center h-45 mb-5">
                     <button
                       className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
                       type="submit"

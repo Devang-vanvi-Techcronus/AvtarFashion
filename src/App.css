@@ -89,7 +89,7 @@ body {
 }
 
 .calcc {
-  height: calc(100% - 72px);
+  height: calc(100% - 82px);
 }
 
 .carousel-inner {
@@ -151,7 +151,7 @@ body {
   margin-top: 40px;
 }
 .buttons-con .action-link-wrap a {
-  background: #68c950;
+  background: rgb(68, 120, 240);
   padding: 8px 25px;
   border-radius: 4px;
   color: #fff;
@@ -366,7 +366,7 @@ img {
   height: auto;
 }
 section {
-  padding: 60px 0;
+  padding: 45px 0;
 }
 
 .sec-title {
@@ -765,3 +765,25 @@ section {
 .nav-link.active {
   color: #000 !important;
 } */
+
+/* reset pwd------------ */
+.otp-input-field input {
+  width: 50px;
+  height: 50px;
+  border-radius: 2.2px;
+  background: #e5e9ed;
+  margin: 5px;
+  text-align: center;
+  border: 0.55px solid rgba(208, 208, 208, 0.5) !important;
+}
+
+.otp-input-field input:focus-visible {
+  border: 0.55px solid rgba(208, 208, 208, 0.5) !important;
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

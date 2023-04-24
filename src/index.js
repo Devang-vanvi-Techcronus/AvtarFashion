@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Flip, ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./context/AuthProvider";
 
@@ -17,7 +17,11 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <Provider store={store}>
-          <ToastContainer position="top-right" autoClose={1500} />
+          <ToastContainer
+            position="top-right"
+            autoClose={1500}
+            transition={Flip}
+          />
           <App />
         </Provider>
       </AuthProvider>
