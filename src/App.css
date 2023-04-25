@@ -194,13 +194,13 @@ body {
   }
 }
 @media (max-width: 450px) {
-  svg {
+  /* svg {
     position: absolute;
     top: 50%;
     left: 50%;
     margin-top: -250px;
     margin-left: -190px;
-  }
+  } */
   .message-box {
     top: 50%;
     left: 50%;
@@ -366,7 +366,7 @@ img {
   height: auto;
 }
 section {
-  padding: 45px 0;
+  padding: 12px 0;
 }
 
 .sec-title {
@@ -742,7 +742,7 @@ section {
 
 .nav-link-grow-up::before {
   height: 0%;
-  width: 90%;
+  width: 80%;
   top: 121%;
   bottom: 0px;
 }
@@ -786,4 +786,24 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.adjust {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.w-40 {
+  width: 40%;
+}
+.w-60 {
+  width: 60%;
+}
+.max-width_img {
+  max-width: 200px;
 }

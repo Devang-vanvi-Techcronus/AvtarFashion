@@ -59,6 +59,7 @@ const Login = () => {
       return false;
     }
     setloading(true);
+
     postWithoutToken(LOGIN_URL, values).then((response) => {
       setloading(false);
       if (response.success == true) {
@@ -163,26 +164,26 @@ const Login = () => {
                       OR
                     </p>
                   </div>
-                  <div className="d-flex justify-content-around align-items-center h-45 mb-5">
+                  <div className="d-flex justify-content-around align-items-center  mb-5">
                     <button
-                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
+                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
                         className="fa fa-facebook fa-lg me-2"
                         aria-hidden="true"
                       ></i>
-                      Continue with Facebook
+                      <span> Continue with Facebook</span>
                     </button>
                     <button
-                      className="btn btn-outline-primary btn-block c-btn h-100 w-100"
+                      className="btn btn-outline-primary btn-block c-btn h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
                         className="fa fa-google fa-lg  me-2"
                         aria-hidden="true"
                       ></i>
-                      Continue with Gmail
+                      <span>Continue with Gmail</span>
                     </button>
                   </div>
                 </form>

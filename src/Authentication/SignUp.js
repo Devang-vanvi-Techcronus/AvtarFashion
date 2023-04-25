@@ -193,9 +193,9 @@ const SignUp = () => {
                       OR
                     </p>
                   </div>
-                  <div className="d-flex justify-content-around align-items-center h-45 mb-5">
+                  <div className="d-flex justify-content-around align-items-center  mb-5">
                     <button
-                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
+                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
@@ -205,7 +205,7 @@ const SignUp = () => {
                       Continue with Facebook
                     </button>
                     <button
-                      className="btn btn-outline-primary btn-block c-btn h-100 w-100"
+                      className="btn btn-outline-primary btn-block c-btn h-100 w-100 py-2"
                       type="submit"
                     >
                       <i

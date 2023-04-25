@@ -1,9 +1,3 @@
-export const addToCart = (product) => {
-  return {
-    type: "ADDTOITEM",
-    payload: product,
-  };
-};
 export const addCart = (product) => {
   return {
     type: "ADDITEM",
@@ -19,7 +13,7 @@ export const delCart = (product) => {
 
 export const removeItemsFromCart = (product) => {
   return {
-    type: "REMOVE_CART_ITEM:",
+    type: "REMOVE_CART_ITEM",
     payload: product,
   };
 };

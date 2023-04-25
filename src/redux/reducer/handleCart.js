@@ -2,25 +2,19 @@ const cart = [];
 
 export const handleCart = (state = cart, action) => {
   switch (action.type) {
-    case "ADDTOITEM":
-      const productss = action.payload;
-
-      const exisst = state.find((x) => x._id === productss._id);
-      console.log(exisst, "exist");
-      if (exisst) {
-        return state.map((x) =>
-          exisst ? { ...x, qty: x.qty + 1, price: x.price * 2 } : x
-        );
-      }
-      return [...state, { ...productss, qty: 1 }];
     case "ADDITEM":
       const product = action.payload;
 
       const exist = state.find((x) => x._id === product._id);
-      console.log(exist, "exist");
       if (exist) {
         return state.map((x) =>
-          exist._id == x._id ? { ...x, qty: x.qty + 1, price: x.price * 2 } : x
+          exist._id == x._id
+            ? {
+                ...x,
+                qty: x.qty + 1,
+                price: x.price * 2,
+              }
+            : x
         );
       }
       return [...state, { ...product, qty: 1 }];
@@ -29,18 +23,26 @@ export const handleCart = (state = cart, action) => {
       const products = action.payload;
 
       const exist1 = state.find((x) => x._id === products._id);
-      console.log("exist1: ", exist1);
       if (exist1) {
         return state.map((x) =>
-          exist1._id == x._id ? { ...x, qty: x.qty - 1, price: x.price / 2 } : x
+          exist1._id == x._id
+            ? {
+                ...x,
+                qty: x.qty - 1,
+                price: x.price / 2,
+              }
+            : x
         );
+        // .filter((item) => item.qty > 0);
       }
 
     case "REMOVE_CART_ITEM":
-      return {
-        ...state,
-        cart: state.cart.filter((i) => i.product !== action.payload),
-      };
+      const removeProduct = action.payload;
+
+      const removeData = state.map((x) => x._id === removeProduct._id);
+      if (removeData) {
+        return state.filter((i) => i._id !== removeProduct._id);
+      }
 
     default:
       return state;

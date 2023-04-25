@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart, removeItemsFromCart } from "../redux/action";
 import { getWithoutToken } from "../Api/allApi";
@@ -8,6 +7,9 @@ import EmptyCart from "./EmptyCart";
 
 export default function Cart() {
   const [product, setProduct] = useState([]);
+  const [totals, setTotals] = useState({
+    total: "",
+  });
   const dispatch = useDispatch();
   const state = useSelector((state) => state.handleCart);
 
@@ -22,15 +24,20 @@ export default function Cart() {
     getProduct();
   }, []);
 
+  const totalData = () => {
+    state.map((dTA) => setTotals({ ...totals, totals: totals + dTA.price }));
+  };
+
+  console.log(totals, "tiobsdhf");
   const handleAdd = (product) => {
+    // totalData();
     dispatch(addCart(product));
   };
   const handleDel = (product) => {
     dispatch(delCart(product));
   };
   const deleteCartItems = (product) => {
-    console.log(product._id, "ppppp");
-    dispatch(removeItemsFromCart(product._id));
+    dispatch(removeItemsFromCart(product));
   };
 
   const cartItems = (product) => {
@@ -47,7 +54,10 @@ export default function Cart() {
                   {state?.map((data, i) => {
                     return (
                       <div className="card-body">
-                        <div className="row px-5">
+                        <div
+                          className="row px-5"
+                          deleteCartItems={deleteCartItems}
+                        >
                           <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                             <div
                               className="bg-image hover-overlay hover-zoom ripple rounded"
@@ -134,7 +144,7 @@ export default function Cart() {
                     <p>
                       <strong>Expected shipping delivery</strong>
                     </p>
-                    <p className="mb-0">12.10.2020 - 14.10.2020</p>
+                    <p className="mb-0">12.10.2023 - 14.10.2023</p>
                   </div>
                 </div>
                 <div className="card mb-4 mb-lg-0">

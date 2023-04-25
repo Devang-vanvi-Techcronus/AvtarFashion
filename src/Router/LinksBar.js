@@ -88,7 +88,7 @@ const LinksBar = () => {
           )}
         </ul>
       </Nav>
-      <Nav>
+      <Nav className="d-flex justify-content-center align-items-center">
         {isAuthenticated().token && (
           <Nav.Link className="nav-item">
             <NavLink
