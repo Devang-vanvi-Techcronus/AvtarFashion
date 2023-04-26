@@ -1,5 +1,6 @@
 import React from "react";
 import ABOUTIMG from "../assets/image/aboutus.jpg";
+import { NavLink } from "react-router-dom";
 
 const About = () => {
   return (
@@ -27,9 +28,12 @@ const About = () => {
                   platform coupons, each tier comes with its own special perks.
                 </div>
                 <div className="btn-box">
-                  <a href="/contactus" className="theme-btn btn-style-one">
+                  <NavLink
+                    href="/contactus"
+                    className="theme-btn btn-style-one"
+                  >
                     Contact Us
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -43,13 +47,17 @@ const About = () => {
                   </span>
                 </div>
                 <figure className="image-1">
-                  <a href="#" className="lightbox-image" data-fancybox="images">
+                  <NavLink
+                    href="#"
+                    className="lightbox-image"
+                    data-fancybox="images"
+                  >
                     <img
                       title="Rahul Kumar Yadav"
                       src={ABOUTIMG}
                       alt="imagehere"
                     />
-                  </a>
+                  </NavLink>
                 </figure>
               </div>
             </div>

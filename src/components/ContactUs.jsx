@@ -1,7 +1,6 @@
 import React from "react";
 import { isAuthenticated } from "../utils/common";
 
-// const { name, email } = JSON.parse(isAuthenticated().user);
 const ContactUs = () => {
   return (
     <>

@@ -2,6 +2,7 @@ import React from "react";
 import LinksBar from "../Router/LinksBar";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-router-dom";
 
 const Navigationbar = () => {
   return (
@@ -14,10 +15,10 @@ const Navigationbar = () => {
       >
         <Container>
           <Navbar.Brand href="#home">
-            <a className="navbar-brand" href="/">
+            <NavLink className="navbar-brand" href="/">
               <i className="fa fa-buysellads fa-lg me-2" aria-hidden="true"></i>
               AvtarFashion
-            </a>
+            </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

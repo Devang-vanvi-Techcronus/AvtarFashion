@@ -8,7 +8,6 @@ import Accordion from "react-bootstrap/Accordion";
 import ReactPagination from "react-paginate";
 
 const Products = ({ activeTab }) => {
-  console.log(activeTab, "activeTab");
   const [data, setData] = useState([]);
   const [item, setItem] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,7 +25,6 @@ const Products = ({ activeTab }) => {
 
   const getProduct = () => {
     getWithoutToken(`/product?page=${currentPage}`).then((response) => {
-      console.log(response.products, "response of getproducts");
       setFilter(response.products);
       setloading(false);
     });
@@ -43,14 +41,13 @@ const Products = ({ activeTab }) => {
   };
 
   const handlepageClick = (page) => {
-    console.log(page, "page ,,,");
     setCurrentPage(page.selected + 1);
     getProduct();
   };
 
   const filerProduct = (cat) => {
     const updateList = data.filter((x) => x.category === cat);
-    console.log(updateList, "updatedlisttt");
+
     setFilter(updateList);
   };
 
@@ -72,69 +69,69 @@ const Products = ({ activeTab }) => {
                   <div className="accordion-body">
                     <ul className="list-unstyled">
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => setFilter(data)}
                         >
                           All{" "}
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("electronics")}
                         >
                           Electronics{" "}
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("jewelery")}
                         >
                           Jewellery
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("men's clothing")}
                         >
                           Men's clothing{" "}
-                        </a>
+                        </NavLink>
                       </li>
 
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("women's clothing")}
                         >
                           Women's clothing{" "}
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("Kids")}
                         >
                           Kids{" "}
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("Footwear")}
                         >
                           Bags & Footwear
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
+                        <NavLink
                           className="text-dark pointer"
                           onClick={() => filerProduct("Beauty")}
                         >
                           Beauty & Health
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
@@ -157,11 +154,11 @@ const Products = ({ activeTab }) => {
                           type="checkbox"
                           value=""
                           id="flexCheckChecked1"
-                          checked
+                          defaultChecked
                         />
                         <label
                           className="form-check-label"
-                          for="flexCheckChecked1"
+                          htmlFor="flexCheckChecked1"
                         >
                           Allen Solly
                         </label>
@@ -174,13 +171,12 @@ const Products = ({ activeTab }) => {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
                           id="flexCheckChecked2"
-                          checked
+                          defaultChecked
                         />
                         <label
                           className="form-check-label"
-                          for="flexCheckChecked2"
+                          htmlFor="flexCheckChecked2"
                         >
                           Roadster
                         </label>
@@ -193,13 +189,12 @@ const Products = ({ activeTab }) => {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
                           id="flexCheckChecked3"
-                          checked
+                          defaultChecked
                         />
                         <label
                           className="form-check-label"
-                          for="flexCheckChecked3"
+                          htmlFor="flexCheckChecked3"
                         >
                           U.S. Polo Assn
                         </label>
@@ -212,13 +207,12 @@ const Products = ({ activeTab }) => {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
                           id="flexCheckChecked4"
-                          checked
+                          defaultChecked
                         />
                         <label
                           className="form-check-label"
-                          for="flexCheckChecked4"
+                          htmlFor="flexCheckChecked4"
                         >
                           Flying Machine
                         </label>
@@ -231,12 +225,11 @@ const Products = ({ activeTab }) => {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
                           id="flexCheckDefault"
                         />
                         <label
                           className="form-check-label"
-                          for="flexCheckDefault"
+                          htmlFor="flexCheckDefault"
                         >
                           Louis Philippe Sport
                         </label>
@@ -249,12 +242,11 @@ const Products = ({ activeTab }) => {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
                           id="flexCheckDefault"
                         />
                         <label
                           className="form-check-label"
-                          for="flexCheckDefault"
+                          htmlFor="flexCheckDefault"
                         >
                           Arrow Sport
                         </label>
@@ -292,7 +284,7 @@ const Products = ({ activeTab }) => {
                             id="typeNumber"
                             className="form-control"
                           />
-                          <label className="form-label" for="typeNumber">
+                          <label className="form-label" htmlFor="typeNumber">
                             $0
                           </label>
                         </div>
@@ -305,7 +297,7 @@ const Products = ({ activeTab }) => {
                             id="typeNumber"
                             className="form-control"
                           />
-                          <label className="form-label" for="typeNumber">
+                          <label className="form-label" htmlFor="typeNumber">
                             $1,0000
                           </label>
                         </div>
@@ -335,13 +327,12 @@ const Products = ({ activeTab }) => {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
                         id="flexCheckDefault"
-                        checked
+                        defaultChecked
                       />
                       <label
                         className="form-check-label"
-                        for="flexCheckDefault"
+                        htmlFor="flexCheckDefault"
                       >
                         <i className="fa fa-star text-warning"></i>
                         <i className="fa fa-star text-warning"></i>
@@ -354,13 +345,12 @@ const Products = ({ activeTab }) => {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
                         id="flexCheckDefault"
-                        checked
+                        defaultChecked
                       />
                       <label
                         className="form-check-label"
-                        for="flexCheckDefault"
+                        htmlFor="flexCheckDefault"
                       >
                         <i className="fa fa-star text-warning"></i>
                         <i className="fa fa-star text-warning"></i>
@@ -374,13 +364,12 @@ const Products = ({ activeTab }) => {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
                         id="flexCheckDefault"
-                        checked
+                        defaultChecked
                       />
                       <label
                         className="form-check-label"
-                        for="flexCheckDefault"
+                        htmlFor="flexCheckDefault"
                       >
                         <i className="fa fa-star text-warning"></i>
                         <i className="fa fa-star text-warning"></i>
@@ -394,13 +383,12 @@ const Products = ({ activeTab }) => {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
                         id="flexCheckDefault"
-                        checked
+                        defaultChecked
                       />
                       <label
                         className="form-check-label"
-                        for="flexCheckDefault"
+                        htmlFor="flexCheckDefault"
                       >
                         <i className="fa fa-star text-warning"></i>
                         <i className="fa fa-star text-warning"></i>
@@ -421,7 +409,6 @@ const Products = ({ activeTab }) => {
 
   const ShowpagiData = () => {
     const handleById = (id) => {
-      console.log(id, "id");
       Navigate(`/products/${id}`, { state: { id: id } });
     };
     return (
@@ -484,12 +471,12 @@ const Products = ({ activeTab }) => {
                           >
                             Add to cart
                           </Button>
-                          <a
+                          <NavLink
                             href="#!"
                             className="btn btn-light border icon-hover px-2 pt-2"
                           >
                             <i className="fa fa-heart fa-lg text-secondary px-1 heart"></i>
-                          </a>
+                          </NavLink>
                         </div>
                       </div>
                     </div>
@@ -534,7 +521,7 @@ const Products = ({ activeTab }) => {
                     <option value="3">Randomly</option>
                   </select>
                   <div className="btn-group shadow-0 border">
-                    <a
+                    <NavLink
                       className="btn btn-light"
                       title="List view"
                       onClick={() => {
@@ -542,9 +529,9 @@ const Products = ({ activeTab }) => {
                       }}
                     >
                       <i className="fa fa-bars fa-lg"></i>
-                    </a>
+                    </NavLink>
 
-                    <a
+                    <NavLink
                       className="btn btn-light "
                       title="Grid view"
                       onClick={() => {
@@ -552,7 +539,7 @@ const Products = ({ activeTab }) => {
                       }}
                     >
                       <i className="fa fa-th fa-lg"></i>
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </header>
@@ -565,7 +552,6 @@ const Products = ({ activeTab }) => {
                   pageCount={4}
                   marginPagesDisplayed={3}
                   pageRangeDisplayed={8}
-                  // initialPage={1}
                   onPageChange={handlepageClick}
                   containerClassName={"pagination"}
                   pageClassName={"page-item"}

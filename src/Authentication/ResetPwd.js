@@ -119,11 +119,9 @@ const ResetPwd = () => {
 
       putWithoutToken("/password/reset", otpPayload)
         .then((response) => {
-          console.log(response, "dedede");
           if (response.success == true) {
             toast.success(Notification.TOST_SUCESS);
           } else if (response.success == false) {
-            console.log(response.message, "errrrmssssg");
             toast.error(response.message);
           } else {
             toast.error(Notification.TOST_500_ERROR);
@@ -213,7 +211,7 @@ const ResetPwd = () => {
                   <label className="form-label" htmlFor="form1Example23">
                     Confirm Password
                   </label>
-                  <div class="input-group mb-3">
+                  <div className="input-group mb-3">
                     <input
                       type={showPwd1 ? "text" : "password"}
                       name="cpassword"

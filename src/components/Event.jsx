@@ -5,11 +5,11 @@ const Event = () => {
   return (
     <>
       <div className="container">
-        <div className="p-5">
+        <div className="p-md-5 p-2">
           <h1>Newest fashion</h1>
         </div>
         <div className="row justify-content-center align-items-center h-80vh mt-3">
-          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+          <div className="col-lg-4 col-md-4 col-sm-4 col-4">
             <div className="flip-box">
               <div className="flip-box-inner">
                 <div className="flip-box-front">
@@ -26,7 +26,7 @@ const Event = () => {
             </div>
           </div>
 
-          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+          <div className="col-lg-4 col-md-4 col-sm-4 col-4">
             <div className="flip-box">
               <div className="flip-box-inner">
                 <div className="flip-box-front">
@@ -43,7 +43,7 @@ const Event = () => {
             </div>
           </div>
 
-          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+          <div className="col-lg-4 col-md-4 col-sm-4 col-4">
             <div className="flip-box">
               <div className="flip-box-inner">
                 <div className="flip-box-front">

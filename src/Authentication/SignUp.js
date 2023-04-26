@@ -78,7 +78,6 @@ const SignUp = () => {
           setLocalStorage("apiToken", response);
         }
       } else if (response.success == false) {
-        console.log(response.message, "errrrmssssg");
         toast.error(response.message);
       } else {
         toast.error(Notification.TOST_500_ERROR);

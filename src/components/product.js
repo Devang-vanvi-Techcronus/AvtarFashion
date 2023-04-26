@@ -56,7 +56,7 @@ export default function Product() {
               className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
               type="submit"
             >
-              <i class="fa fa-cart-plus fa-lg  me-2" aria-hidden="true"></i>
+              <i className="fa fa-cart-plus fa-lg  me-2" aria-hidden="true"></i>
               Add to Card
             </button>
             <button
@@ -64,7 +64,10 @@ export default function Product() {
               type="submit"
               onClick={() => navigate("/cart")}
             >
-              <i class="fa fa-caret-right fa-lg  me-2" aria-hidden="true"></i>
+              <i
+                className="fa fa-caret-right fa-lg  me-2"
+                aria-hidden="true"
+              ></i>
               Go to Card
             </button>
           </div>

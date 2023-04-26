@@ -24,7 +24,6 @@ const LinksBar = () => {
 
   useEffect(() => {
     let data = JSON.parse(isAuthenticated().user);
-    console.log("data: ", data);
     setDataStorage(data);
   }, []);
   const navigate = useNavigate();
@@ -54,11 +53,6 @@ const LinksBar = () => {
           </Nav.Link>
           {isAuthenticated().token && (
             <>
-              <Nav.Link className="nav-item">
-                <Link to="/services" className="nav-link nav-link-grow-up">
-                  Services
-                </Link>
-              </Nav.Link>
               <Nav.Link className="nav-item">
                 <NavLink to="/events" className="nav-link nav-link-grow-up">
                   Events
@@ -96,7 +90,10 @@ const LinksBar = () => {
               className="nav-link d-flex align-items-center "
             >
               {dataStorage?.name}
-              <i class="fa fa-user-circle fa-lg ms-2" aria-hidden="true"></i>
+              <i
+                className="fa fa-user-circle fa-lg ms-2"
+                aria-hidden="true"
+              ></i>
             </NavLink>
           </Nav.Link>
         )}
@@ -104,11 +101,11 @@ const LinksBar = () => {
         <Nav.Link className="nav-item">
           <Link to="/cart" className="nav-link cart1">
             {isAuthenticated().token != null ? (
-              <span class="count">{state.length}</span>
+              <span className="count">{state.length}</span>
             ) : (
-              <span class="count">0</span>
+              <span className="count">0</span>
             )}
-            <i class="material-icons fa fa-shopping-cart fa-lg"></i>
+            <i className="material-icons fa fa-shopping-cart fa-lg"></i>
           </Link>
         </Nav.Link>
 
@@ -121,7 +118,7 @@ const LinksBar = () => {
                 overlay={renderTooltip}
               >
                 <Button onClick={handleClick}>
-                  <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                  <i className="fa fa-sign-out fa-lg" aria-hidden="true"></i>
                 </Button>
               </OverlayTrigger>
             </Nav.Link>

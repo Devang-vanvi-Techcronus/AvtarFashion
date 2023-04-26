@@ -6,7 +6,6 @@ const Profile = () => {
   const [dataStorage, setDataStorage] = useState("Hello");
   useEffect(() => {
     let data = JSON.parse(isAuthenticated().user);
-    console.log("data: ", data);
     setDataStorage(data);
   }, []);
   return (

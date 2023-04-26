@@ -71,7 +71,6 @@ const Login = () => {
           Navigate("/");
         }
       } else if (response.success == false) {
-        console.log(response.message, "errrrmssssg");
         toast.error(response.message);
       } else {
         toast.error(Notification.TOST_500_ERROR);
@@ -121,7 +120,7 @@ const Login = () => {
                     <label className="form-label" htmlFor="form1Example23">
                       Password
                     </label>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                       <input
                         type={showPwd ? "text" : "password"}
                         name="password"

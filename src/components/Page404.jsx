@@ -1,9 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Page404 = () => {
   return (
     <>
-      <body style={{ backgroundColor: "#2f3242" }} class="bg1">
+      <body style={{ backgroundColor: "#2f3242" }} className="bg1">
         <svg
           width="380px"
           className="svg1"
@@ -51,20 +52,20 @@ const Page404 = () => {
             ></path>
           </g>
         </svg>
-        <div class="message-box">
+        <div className="message-box">
           <h1>404</h1>
           <p>Page not found</p>
-          <div class="buttons-con">
-            <div class="action-link-wrap">
-              <a
+          <div className="buttons-con">
+            <div className="action-link-wrap">
+              <NavLink
                 onclick="history.back(-1)"
-                class="link-button link-back-button"
+                className="link-button link-back-button"
               >
                 Go Back
-              </a>
-              <a href="/" class="link-button">
+              </NavLink>
+              <NavLink href="/" className="link-button">
                 Go to Home Page
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>

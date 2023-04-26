@@ -15,13 +15,10 @@ const Pagi = () => {
   const getProduct = () => {
     getWithoutToken(`/product?page=${currentPage}`).then((response) => {
       setItem(response.products);
-      console.log(response.products, "response from pagi");
     });
   };
 
   const handlepageClick = (page) => {
-    console.log(page.selected);
-    // let currentPage = page.selected + 1;
     setCurrentPage(page.selected);
     getProduct();
   };

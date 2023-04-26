@@ -4,6 +4,7 @@ import { addCart, delCart, removeItemsFromCart } from "../redux/action";
 import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import EmptyCart from "./EmptyCart";
+import { NavLink } from "react-router-dom";
 
 export default function Cart() {
   const [product, setProduct] = useState([]);
@@ -25,12 +26,12 @@ export default function Cart() {
   }, []);
 
   const totalData = () => {
-    state.map((dTA) => setTotals({ ...totals, totals: totals + dTA.price }));
+    state.map((dTA) => console.log(dTA, "rerearerer"));
   };
-
   console.log(totals, "tiobsdhf");
+
   const handleAdd = (product) => {
-    // totalData();
+    totalData();
     dispatch(addCart(product));
   };
   const handleDel = (product) => {
@@ -69,9 +70,9 @@ export default function Cart() {
                                   className="cart_image w-100 cart_img-height"
                                 />
                               )}
-                              <a href="#!">
+                              <NavLink href="#!">
                                 <div className="mask cart_background"></div>
-                              </a>
+                              </NavLink>
                             </div>
                           </div>
 
