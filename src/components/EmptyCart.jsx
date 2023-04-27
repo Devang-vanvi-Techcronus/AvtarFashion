@@ -1,6 +1,5 @@
 import React from "react";
 import EMPTYCARTIMG from "../assets/image/dCdflKN.png";
-import { NavLink } from "react-router-dom";
 const EmptyCart = () => {
   return (
     <>
@@ -22,13 +21,13 @@ const EmptyCart = () => {
                       <strong>Your Cart is Empty</strong>
                     </h3>
                     <h4>Add something to make me happy :)</h4>
-                    <NavLink
+                    <a
                       href="/products"
                       className="btn btn-primary cart-btn-transform m-3"
                       data-abc="true"
                     >
                       continue shopping
-                    </NavLink>
+                    </a>
                   </div>
                 </div>
               </div>

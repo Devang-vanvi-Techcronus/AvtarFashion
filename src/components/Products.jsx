@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Loading from "../utils/Loader";
 import { getWithoutToken } from "../Api/allApi";
-import { PRODUCTS_URL } from "../Api/helper/coreapicall";
+import { PRODUCTS_URL, SORT_URL } from "../Api/helper/coreapicall";
 import { NavLink, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import ReactPagination from "react-paginate";
+import Slider from "@mui/material/Slider";
+// import Box from "@mui/material/Box";
 
 const Products = ({ activeTab }) => {
   const [data, setData] = useState([]);
@@ -14,14 +16,16 @@ const Products = ({ activeTab }) => {
   const [filter, setFilter] = useState([data]);
   const [loading, setloading] = useState([false]);
   const [listData, setListData] = useState("1");
+  const [price, setPrice] = useState([0, 200000]);
 
   const Navigate = useNavigate();
 
   useEffect(() => {
-    setloading(true);
+    // setloading(true);
     getProduct();
     getfilterProduct();
-  }, []);
+    getsortProduct();
+  }, [price]);
 
   const getProduct = () => {
     getWithoutToken(`/product?page=${currentPage}`).then((response) => {
@@ -40,11 +44,26 @@ const Products = ({ activeTab }) => {
     });
   };
 
+  const getsortProduct = () => {
+    getWithoutToken(
+      `/product?price[gte]=${price[0]}&price[lte]=${price[1]}`
+    ).then((response) => {
+      if (response.success == true) {
+        setFilter(response?.products);
+      }
+    });
+  };
+
   const handlepageClick = (page) => {
     setCurrentPage(page.selected + 1);
     getProduct();
   };
 
+  const priceHandler = (e, newprice) => {
+    console.log(e, "eeeeeeeeeee");
+    console.log(newprice, "newprice");
+    setPrice(newprice);
+  };
   const filerProduct = (cat) => {
     const updateList = data.filter((x) => x.category === cat);
 
@@ -61,11 +80,7 @@ const Products = ({ activeTab }) => {
                 <Accordion.Header>
                   <div className="text-dark ">Related items</div>
                 </Accordion.Header>
-                <Accordion.Body
-                  id="panelsStayOpen-collapseOne"
-                  className="accordion-collapse collapse show"
-                  aria-labelledby="headingOne"
-                >
+                <Accordion.Body>
                   <div className="accordion-body">
                     <ul className="list-unstyled">
                       <li>
@@ -141,11 +156,7 @@ const Products = ({ activeTab }) => {
                 <Accordion.Header>
                   <div className="text-dark ">Brands</div>
                 </Accordion.Header>
-                <Accordion.Body
-                  id="panelsStayOpen-collapseTwo"
-                  className="accordion-collapse collapse show"
-                  aria-labelledby="headingTwo"
-                >
+                <Accordion.Body>
                   <div className="accordion-body">
                     <div>
                       <div className="form-check">
@@ -262,19 +273,24 @@ const Products = ({ activeTab }) => {
                 <Accordion.Header>
                   <div className="text-dark ">Price</div>
                 </Accordion.Header>
-                <Accordion.Body
-                  id="panelsStayOpen-collapseThree"
-                  className="accordion-collapse collapse show"
-                  aria-labelledby="headingThree"
-                >
+                <Accordion.Body>
                   <div className="accordion-body">
-                    <div className="range">
+                    {/* <div className="range">
                       <input
                         type="range"
                         className="form-range"
                         id="customRange1"
                       />
-                    </div>
+                    </div> */}
+
+                    <Slider
+                      getAriaLabel={() => "Temperature range"}
+                      value={price}
+                      onChange={priceHandler}
+                      min={0}
+                      max={200000}
+                    />
+
                     <div className="row mb-3">
                       <div className="col-6">
                         <p className="mb-0">Min</p>
@@ -317,11 +333,7 @@ const Products = ({ activeTab }) => {
                 <Accordion.Header>
                   <div className="text-dark ">Ratings</div>
                 </Accordion.Header>
-                <Accordion.Body
-                  id="panelsStayOpen-collapseFive"
-                  className="accordion-collapse collapse show"
-                  aria-labelledby="headingThree"
-                >
+                <Accordion.Body>
                   <div className="accordion-body">
                     <div className="form-check">
                       <input
@@ -422,7 +434,7 @@ const Products = ({ activeTab }) => {
                     className={`${
                       listData == "1"
                         ? "col-lg-6 col-md-6 col-sm-12 col-12"
-                        : "col-lg-4 col-md-4 col-sm-12 col-12"
+                        : "col-lg-4 col-md-6 col-sm-12 col-12"
                     } d-flex`}
                     onClick={() => handleById(product?._id)}
                   >

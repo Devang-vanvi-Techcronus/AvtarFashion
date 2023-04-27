@@ -17,3 +17,9 @@ export const removeItemsFromCart = (product) => {
     payload: product,
   };
 };
+
+export const calculateTotal = () => {
+  return {
+    type: "CALCULATE_TOTAL",
+  };
+};

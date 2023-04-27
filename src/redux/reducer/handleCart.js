@@ -44,6 +44,19 @@ export const handleCart = (state = cart, action) => {
         return state.filter((i) => i._id !== removeProduct._id);
       }
 
+    case "CALCULATE_TOTAL":
+      const totalprice = (state) => {
+        let price = 0;
+        let total = 0;
+        state.forEach((item) => {
+          price += item.price;
+          total += item.price;
+        });
+        state.price = price;
+        state.total = total;
+      };
+      let TotalPRice = totalprice(state);
+
     default:
       return state;
   }

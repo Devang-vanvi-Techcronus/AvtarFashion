@@ -34,7 +34,7 @@ const LinksBar = () => {
   };
   return (
     <>
-      <Nav className="me-auto d-flex justify-content-center align-items-center m-auto">
+      <Nav className="me-auto d-flex justify-content-center align-items-start m-auto">
         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
           <Nav.Link className="nav-item ">
             <NavLink to="/" className="nav-link nav-link-grow-up">
@@ -82,7 +82,7 @@ const LinksBar = () => {
           )}
         </ul>
       </Nav>
-      <Nav className="d-flex justify-content-center align-items-center">
+      <Nav className="d-flex justify-content-center align-items-start">
         {isAuthenticated().token && (
           <Nav.Link className="nav-item">
             <NavLink
