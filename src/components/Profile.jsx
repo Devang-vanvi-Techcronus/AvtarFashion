@@ -1,6 +1,7 @@
 import React from "react";
 import { isAuthenticated } from "../utils/common";
 import { useEffect, useState } from "react";
+import PROFILE from "../assets/image/profile.jpg";
 
 const Profile = () => {
   const [dataStorage, setDataStorage] = useState("Hello");
@@ -14,11 +15,19 @@ const Profile = () => {
         <div className="row align-items-center justify-content-center">
           <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-              <img
-                className="rounded-circle mt-5"
-                width="150px"
-                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-              />
+              <div class="profile-pic">
+                <label class="-label" for="file">
+                  <i class="fa fa-camera me-2" aria-hidden="true"></i>
+                  <span>Change Image</span>
+                </label>
+                <input id="file" type="file" onchange="loadFile(event)" />
+                <img
+                  width="200px"
+                  className="rounded-circle mt-5"
+                  src={PROFILE}
+                />
+              </div>
+
               <span className="font-weight-bold">{dataStorage?.name}</span>
               <span className="text-black-50">{dataStorage?.email}</span>
               <span> </span>

@@ -2,71 +2,49 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Loading from "../utils/Loader";
 import { getWithoutToken } from "../Api/allApi";
-import { PRODUCTS_URL, SORT_URL } from "../Api/helper/coreapicall";
 import { NavLink, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
-import ReactPagination from "react-paginate";
+import Pagination from "react-js-pagination";
 import Slider from "@mui/material/Slider";
-// import Box from "@mui/material/Box";
 
 const Products = ({ activeTab }) => {
   const [data, setData] = useState([]);
-  const [item, setItem] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState([data]);
   const [loading, setloading] = useState([false]);
   const [listData, setListData] = useState("1");
   const [price, setPrice] = useState([0, 200000]);
+  const [productsCount, setproductsCount] = useState("");
+  const [resultPerPage, setresultPerPage] = useState("");
 
   const Navigate = useNavigate();
 
+  const setCurrentPageNo = (e) => {
+    setCurrentPage(e);
+  };
+
   useEffect(() => {
-    // setloading(true);
+    setloading(true);
     getProduct();
-    getfilterProduct();
-    getsortProduct();
-  }, [price]);
+  }, [price, currentPage]);
 
   const getProduct = () => {
-    getWithoutToken(`/product?page=${currentPage}`).then((response) => {
+    getWithoutToken(
+      `/product?&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`
+    ).then((response) => {
+      setproductsCount(response.productsCount);
+      setresultPerPage(response.resultPerPage);
       setFilter(response.products);
+      setData(response.products);
       setloading(false);
     });
   };
 
-  const getfilterProduct = () => {
-    getWithoutToken(PRODUCTS_URL).then((response) => {
-      if (response) {
-        setData(response.products);
-        setFilter(response.products);
-        setloading(false);
-      }
-    });
-  };
-
-  const getsortProduct = () => {
-    getWithoutToken(
-      `/product?price[gte]=${price[0]}&price[lte]=${price[1]}`
-    ).then((response) => {
-      if (response.success == true) {
-        setFilter(response?.products);
-      }
-    });
-  };
-
-  const handlepageClick = (page) => {
-    setCurrentPage(page.selected + 1);
-    getProduct();
-  };
-
   const priceHandler = (e, newprice) => {
-    console.log(e, "eeeeeeeeeee");
-    console.log(newprice, "newprice");
     setPrice(newprice);
   };
   const filerProduct = (cat) => {
     const updateList = data.filter((x) => x.category === cat);
-
     setFilter(updateList);
   };
 
@@ -88,7 +66,7 @@ const Products = ({ activeTab }) => {
                           className="text-dark pointer"
                           onClick={() => setFilter(data)}
                         >
-                          All{" "}
+                          All
                         </NavLink>
                       </li>
                       <li>
@@ -96,7 +74,7 @@ const Products = ({ activeTab }) => {
                           className="text-dark pointer"
                           onClick={() => filerProduct("electronics")}
                         >
-                          Electronics{" "}
+                          Electronics
                         </NavLink>
                       </li>
                       <li>
@@ -112,7 +90,7 @@ const Products = ({ activeTab }) => {
                           className="text-dark pointer"
                           onClick={() => filerProduct("men's clothing")}
                         >
-                          Men's clothing{" "}
+                          Men's clothing
                         </NavLink>
                       </li>
 
@@ -121,7 +99,7 @@ const Products = ({ activeTab }) => {
                           className="text-dark pointer"
                           onClick={() => filerProduct("women's clothing")}
                         >
-                          Women's clothing{" "}
+                          Women's clothing
                         </NavLink>
                       </li>
                       <li>
@@ -129,7 +107,7 @@ const Products = ({ activeTab }) => {
                           className="text-dark pointer"
                           onClick={() => filerProduct("Kids")}
                         >
-                          Kids{" "}
+                          Kids
                         </NavLink>
                       </li>
                       <li>
@@ -557,22 +535,19 @@ const Products = ({ activeTab }) => {
               </header>
               <div>{listData && <ShowpagiData />}</div>
               <div className="d-flex justify-content-center">
-                <ReactPagination
-                  previousLabel="previous"
-                  nextLabel="next"
-                  breakLabel="..."
-                  pageCount={4}
-                  marginPagesDisplayed={3}
-                  pageRangeDisplayed={8}
-                  onPageChange={handlepageClick}
-                  containerClassName={"pagination"}
-                  pageClassName={"page-item"}
-                  pageLinkClassName={"page-link"}
-                  previousClassName={"page-item"}
-                  previousLinkClassName={"page-link"}
-                  nextClassName={"page-item"}
-                  nextLinkClassName={"page-link"}
-                  activeClassName={"active"}
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  totalItemsCount={productsCount}
+                  onChange={setCurrentPageNo}
+                  nextPageText="Next"
+                  prevPageText="Prev"
+                  firstPageText="First"
+                  lastPageText="Last"
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activeClass="pageItemActive"
+                  activeLinkClass="pageLinkActive"
                 />
               </div>
             </div>

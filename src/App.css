@@ -839,6 +839,7 @@ input::-webkit-inner-spin-button {
   background-color: #0d6efd;
   -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 70%, 90% 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%);
+  cursor: pointer;
 }
 
 .btn--doar:hover {
@@ -859,4 +860,52 @@ input::-webkit-inner-spin-button {
 .btn--doar:hover:after {
   margin: -5px 15px;
   right: 0px;
+}
+
+/* ------------------------------------------- */
+
+.profile-pic {
+  color: transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.profile-pic input {
+  display: none;
+}
+
+.profile-pic img {
+  position: absolute;
+  object-fit: cover;
+  top: -46px;
+  right: 0;
+  width: 165px;
+  height: 165px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  z-index: 0;
+}
+
+.profile-pic .-label {
+  cursor: pointer;
+  position: relative;
+  height: 165px;
+  width: 165px;
+}
+
+.profile-pic:hover label {
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: #ffffff;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 100px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic .-label span {
+  display: inline-flex;
+  height: 2em;
 }

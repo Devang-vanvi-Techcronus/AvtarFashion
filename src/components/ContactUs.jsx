@@ -16,7 +16,7 @@ const ContactUs = () => {
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
-        <div className="d-flex align-items-center justify-content-center  mb-5">
+        <div className="d-flex align-items-center justify-content-center  mb-5 container">
           <div className="col-md-6 col-lg-6 col-xl-5 col-12">
             <form>
               <div className="form-outline mb-4">

@@ -1,5 +1,7 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
+import EVENT1 from "../assets/image/eventimage/event1.png";
+import EVENT2 from "../assets/image/eventimage/event2.png";
+import EVENT3 from "../assets/image/eventimage/event3.png";
 
 const Event = () => {
   return (
@@ -13,7 +15,7 @@ const Event = () => {
             <div className="flip-box">
               <div className="flip-box-inner">
                 <div className="flip-box-front">
-                  <img src="https://images.unsplash.com/photo-1565208565380-02138793c3b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
+                  <img src={EVENT1} />
                 </div>
                 <div className="flip-box-back">
                   <h2>Jeans</h2>
@@ -30,7 +32,7 @@ const Event = () => {
             <div className="flip-box">
               <div className="flip-box-inner">
                 <div className="flip-box-front">
-                  <img src="https://images.unsplash.com/photo-1549062572-544a64fb0c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" />
+                  <img src={EVENT2} />
                 </div>
                 <div className="flip-box-back">
                   <h2>T-shirt</h2>
@@ -47,7 +49,7 @@ const Event = () => {
             <div className="flip-box">
               <div className="flip-box-inner">
                 <div className="flip-box-front">
-                  <img src="https://images.unsplash.com/photo-1565279586461-293ae487de37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
+                  <img src={EVENT3} />
                 </div>
                 <div className="flip-box-back">
                   <h2>Tops</h2>
