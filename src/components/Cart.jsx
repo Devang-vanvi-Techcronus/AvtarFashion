@@ -10,6 +10,9 @@ import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import EmptyCart from "./EmptyCart";
 import { NavLink } from "react-router-dom";
+import VISA_CARD from "../assets/image/cards/visa.svg";
+import MASTER_CARD from "../assets/image/cards/mastercard.svg";
+import MONSTER_CARD from "../assets/image/cards/amex.svg";
 
 export default function Cart() {
   const [product, setProduct] = useState([]);
@@ -154,17 +157,17 @@ export default function Cart() {
                     </p>
                     <img
                       className="me-2 cart_width"
-                      src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                      src={VISA_CARD}
                       alt="Visa"
                     />
                     <img
                       className="me-2 cart_width"
-                      src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                      src={MONSTER_CARD}
                       alt="American Express"
                     />
                     <img
                       className="me-2 cart_width"
-                      src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                      src={MASTER_CARD}
                       alt="Mastercard"
                     />
                   </div>

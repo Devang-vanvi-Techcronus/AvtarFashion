@@ -8,6 +8,7 @@ import { postWithoutToken, setLocalStorage } from "../Api/allApi";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "../utils/Notification";
+// import LOGINIMG from "C:/Users/devan/OneDrive/Pictures/abc12.jpg";
 import LOGINIMG from "../../src/assets/image/11.png";
 import Loading from "../utils/Loader";
 
@@ -92,7 +93,7 @@ const Login = () => {
                 <img src={LOGINIMG} className="img-fluid" alt="image" />
               </div>
               <div className="col-md-7 col-lg-5 col-xl-5">
-                <div className="mb-3 text-primary">
+                <div className="mb-3 text-primary mt-5">
                   <h3>Please Sign in this webpage</h3>
                 </div>
                 <form onSubmit={onSubmit}>

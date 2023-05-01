@@ -909,3 +909,6 @@ input::-webkit-inner-spin-button {
   display: inline-flex;
   height: 2em;
 }
+.toggle_class {
+  background-color: var(--bs-btn-hover-bg);
+}

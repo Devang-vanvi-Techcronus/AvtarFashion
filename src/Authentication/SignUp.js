@@ -96,7 +96,7 @@ const SignUp = () => {
                 <img src={SIGNUPIMG} className="img-fluid" alt="image" />
               </div>
               <div className="col-md-6 col-lg-5 col-xl-5">
-                <div className="mb-3 text-primary">
+                <div className="mb-3 text-primary mt-3">
                   <h3>Create your account</h3>
                 </div>
                 <form onSubmit={onSubmit}>

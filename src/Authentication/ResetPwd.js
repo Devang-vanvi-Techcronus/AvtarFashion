@@ -33,6 +33,8 @@ const ResetPwd = () => {
     cpassword: "",
   });
 
+  const Navigate = useNavigate();
+
   const handleOtpInput = (e, item, i) => {
     const CurrentElement = document.getElementById(item);
 
@@ -120,7 +122,10 @@ const ResetPwd = () => {
       putWithoutToken("/password/reset", otpPayload)
         .then((response) => {
           if (response.success == true) {
-            toast.success(Notification.TOST_SUCESS);
+            if (response.status == 200) {
+              toast.success(Notification.TOST_SUCESS);
+              Navigate("/login");
+            }
           } else if (response.success == false) {
             toast.error(response.message);
           } else {

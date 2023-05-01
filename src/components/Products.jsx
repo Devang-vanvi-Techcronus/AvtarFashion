@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Loading from "../utils/Loader";
 import { getWithoutToken } from "../Api/allApi";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import Pagination from "react-js-pagination";
 import Slider from "@mui/material/Slider";
@@ -511,25 +511,29 @@ const Products = ({ activeTab }) => {
                     <option value="3">Randomly</option>
                   </select>
                   <div className="btn-group shadow-0 border">
-                    <NavLink
-                      className="btn btn-light"
+                    <Link
+                      className={`btn btn-light ${
+                        listData == "1" ? "text-success" : ""
+                      }`}
                       title="List view"
                       onClick={() => {
                         setListData("1");
                       }}
                     >
                       <i className="fa fa-bars fa-lg"></i>
-                    </NavLink>
+                    </Link>
 
-                    <NavLink
-                      className="btn btn-light "
+                    <Link
+                      className={`btn btn-light ${
+                        listData == "2" ? "text-success" : ""
+                      }`}
                       title="Grid view"
                       onClick={() => {
                         setListData("2");
                       }}
                     >
                       <i className="fa fa-th fa-lg"></i>
-                    </NavLink>
+                    </Link>
                   </div>
                 </div>
               </header>
