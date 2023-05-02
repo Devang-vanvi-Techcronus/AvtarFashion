@@ -9,18 +9,25 @@ import {
 import { getWithoutToken } from "../Api/allApi";
 import { PRODUCTS_URL } from "../Api/helper/coreapicall";
 import EmptyCart from "./EmptyCart";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import VISA_CARD from "../assets/image/cards/visa.svg";
 import MASTER_CARD from "../assets/image/cards/mastercard.svg";
 import MONSTER_CARD from "../assets/image/cards/amex.svg";
+import Mymodal from "./ShowModal";
+import moment from "moment/moment";
 
 export default function Cart() {
   const [product, setProduct] = useState([]);
   const [totals, setTotals] = useState({
     total: "",
   });
+  const [showModel, setshowModel] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.handleCart);
+
+  const closeModel = () => setshowModel(false);
+
   useEffect(() => {
     const getProduct = () => {
       getWithoutToken(PRODUCTS_URL).then((response) => {
@@ -42,6 +49,50 @@ export default function Cart() {
   const deleteCartItems = (product) => {
     dispatch(removeItemsFromCart(product));
   };
+
+  const ButtonModal = (
+    <button
+      className="btn btn-success mb-3 "
+      onClick={() => {
+        navigate("/");
+        state.map((data, i) => deleteCartItems(data));
+      }}
+      href="/"
+    >
+      Go back to Shopping
+    </button>
+  );
+
+  const MyMainModel = (
+    <Mymodal closeModel={closeModel} ButtonModal={ButtonModal}>
+      <div className="wrapper-order">
+        {" "}
+        <svg
+          className="checkmark"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 52 52"
+        >
+          {" "}
+          <circle
+            className="checkmark__circle"
+            cx="26"
+            cy="26"
+            r="25"
+            fill="none"
+          />{" "}
+          <path
+            className="checkmark__check"
+            fill="none"
+            d="M14.1 27.2l7.1 7.2 16.7-16.8"
+          />
+        </svg>
+      </div>
+
+      <h3 className="green">Hurray !!</h3>
+      <p className="text">Your Order has been placed.. </p>
+    </Mymodal>
+  );
+  const WeekDate = moment().add(2, "weeks");
 
   const cartItems = (product) => {
     return (
@@ -147,7 +198,10 @@ export default function Cart() {
                     <p>
                       <strong>Expected shipping delivery</strong>
                     </p>
-                    <p className="mb-0">12.10.2023 - 14.10.2023</p>
+                    <p className="mb-0">
+                      {/* {moment().format("D.MM.YYYY")} -{" "}
+                      {WeekDate.format("D.MM.YYYY").toString()} */}
+                    </p>
                   </div>
                 </div>
                 <div className="card mb-4 mb-lg-0">
@@ -201,7 +255,10 @@ export default function Cart() {
                       </li>
                     </ul>
 
-                    <div className="mb-3 d-flex justify-content-center align-items-center">
+                    <div
+                      className="mb-3 d-flex justify-content-center align-items-center"
+                      onClick={() => setshowModel(true)}
+                    >
                       <span href="" className="btn-total btn--doar">
                         Buy Now!
                       </span>
@@ -212,6 +269,8 @@ export default function Cart() {
             </div>
           </div>
         </section>
+
+        {showModel && MyMainModel}
       </>
     );
   };

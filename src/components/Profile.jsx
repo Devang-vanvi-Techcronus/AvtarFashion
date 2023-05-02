@@ -15,9 +15,9 @@ const Profile = () => {
         <div className="row align-items-center justify-content-center">
           <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-              <div class="profile-pic">
-                <label class="-label" for="file">
-                  <i class="fa fa-camera me-2" aria-hidden="true"></i>
+              <div className="profile-pic">
+                <label className="-label" for="file">
+                  <i className="fa fa-camera me-2" aria-hidden="true"></i>
                   <span>Change Image</span>
                 </label>
                 <input id="file" type="file" onchange="loadFile(event)" />

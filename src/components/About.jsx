@@ -1,8 +1,9 @@
 import React from "react";
 import ABOUTIMG from "../assets/image/aboutus.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const About = () => {
+  const Navigate = useNavigate();
   return (
     <>
       <section className="about-section">
@@ -28,12 +29,12 @@ const About = () => {
                   platform coupons, each tier comes with its own special perks.
                 </div>
                 <div className="btn-box">
-                  <NavLink
-                    href="/contactus"
+                  <button
                     className="theme-btn btn-style-one"
+                    onClick={() => Navigate("/contactus")}
                   >
                     Contact Us
-                  </NavLink>
+                  </button>
                 </div>
               </div>
             </div>
