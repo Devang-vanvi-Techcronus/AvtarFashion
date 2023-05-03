@@ -12,7 +12,6 @@ export const handleCart = (state = cart, action) => {
             ? {
                 ...x,
                 qty: x.qty + 1,
-                price: x.price * 2,
               }
             : x
         );
@@ -29,11 +28,9 @@ export const handleCart = (state = cart, action) => {
             ? {
                 ...x,
                 qty: x.qty - 1,
-                price: x.price / 2,
               }
             : x
         );
-        // .filter((item) => item.qty > 0);
       }
 
     case "REMOVE_CART_ITEM":
@@ -49,8 +46,8 @@ export const handleCart = (state = cart, action) => {
         let price = 0;
         let total = 0;
         state.forEach((item) => {
-          price += item.price;
-          total += item.price;
+          price += item.price * item.qty;
+          total = price;
         });
         state.price = price;
         state.total = total;

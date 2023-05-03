@@ -92,7 +92,7 @@ export default function Cart() {
       <p className="text">Your Order has been placed.. </p>
     </Mymodal>
   );
-  const WeekDate = moment().add(2, "weeks");
+  const WeekDate = moment().add(1, "weeks");
 
   const cartItems = (product) => {
     return (
@@ -183,7 +183,11 @@ export default function Cart() {
                               </button>
                             </div>
                             <p className="text-start text-md-center">
-                              <strong>Rs.{data?.price}</strong>
+                              <strong>
+                                $.
+                                {/* {data?.price} */}
+                                {data?.price * data?.qty}
+                              </strong>
                             </p>
                           </div>
                         </div>
@@ -199,8 +203,8 @@ export default function Cart() {
                       <strong>Expected shipping delivery</strong>
                     </p>
                     <p className="mb-0">
-                      {/* {moment().format("D.MM.YYYY")} -{" "}
-                      {WeekDate.format("D.MM.YYYY").toString()} */}
+                      {moment().format("D/MM/YYYY")} -{" "}
+                      {WeekDate.format("D/MM/YYYY").toString()}
                     </p>
                   </div>
                 </div>
@@ -250,7 +254,7 @@ export default function Cart() {
                           </strong>
                         </div>
                         <span>
-                          <strong>Rs.{state.total}</strong>
+                          <strong>$.{state.total}</strong>
                         </span>
                       </li>
                     </ul>
