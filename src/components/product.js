@@ -47,7 +47,7 @@ export default function Product() {
         <div className="col-md-6">
           <h4 className="text-uppercase text-black-50">{product.category}</h4>
           <h1 className="display-5">{product.name}</h1>
-          <h3 className="display-6 fw-bold my-4">${product.price}</h3>
+          <h3 className="display-6 fw-bold my-4">₹.{product.price}</h3>
           <p className="lead mb-5">{product.description}</p>
 
           <div className="d-flex justify-content-around align-items-center h-45">

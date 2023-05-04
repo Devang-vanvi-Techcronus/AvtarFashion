@@ -184,8 +184,7 @@ export default function Cart() {
                             </div>
                             <p className="text-start text-md-center">
                               <strong>
-                                $.
-                                {/* {data?.price} */}
+                                ₹{/* {data?.price} */}
                                 {data?.price * data?.qty}
                               </strong>
                             </p>
@@ -254,7 +253,7 @@ export default function Cart() {
                           </strong>
                         </div>
                         <span>
-                          <strong>$.{state.total}</strong>
+                          <strong>₹.{state.total}</strong>
                         </span>
                       </li>
                     </ul>

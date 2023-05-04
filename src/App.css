@@ -917,6 +917,7 @@ input::-webkit-inner-spin-button {
 
 .model_wapper {
   position: fixed;
+  z-index: 9;
   left: 0;
   right: 0;
   bottom: 0;
@@ -925,6 +926,7 @@ input::-webkit-inner-spin-button {
 }
 
 .modal_container {
+  z-index: 9;
   position: absolute;
   left: 50%;
   top: 50%;

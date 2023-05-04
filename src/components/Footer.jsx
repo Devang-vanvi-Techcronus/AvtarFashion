@@ -13,22 +13,22 @@ const Footer = () => {
               </div>
 
               <div>
-                <NavLink href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-facebook" aria-hidden="true"></i>
                 </NavLink>
-                <NavLink href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-twitter" aria-hidden="true"></i>
                 </NavLink>
-                <NavLink href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-google" aria-hidden="true"></i>
                 </NavLink>
-                <NavLink href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-instagram" aria-hidden="true"></i>
                 </NavLink>
-                <NavLink href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-linkedin" aria-hidden="true"></i>
                 </NavLink>
-                <NavLink href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-github" aria-hidden="true"></i>
                 </NavLink>
               </div>
@@ -52,22 +52,22 @@ const Footer = () => {
                     <h6 className="text-uppercase fw-bold">Products</h6>
                     <div className="mb-4 mt-0 d-inline-block mx-auto hr-tag" />
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         NewsLetter
                       </NavLink>
                     </p>
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         SiteMap
                       </NavLink>
                     </p>
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         Subscribe
                       </NavLink>
                     </p>
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         Give Aways
                       </NavLink>
                     </p>
@@ -77,22 +77,22 @@ const Footer = () => {
                     <h6 className="text-uppercase fw-bold">Useful links</h6>
                     <div className="mb-4 mt-0 d-inline-block mx-auto hr-tag" />
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         Contact Us
                       </NavLink>
                     </p>
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         Community Guideline
                       </NavLink>
                     </p>
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         Shipping Rates
                       </NavLink>
                     </p>
                     <p>
-                      <NavLink href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         Help
                       </NavLink>
                     </p>
@@ -121,10 +121,7 @@ const Footer = () => {
             <div className="text-center p-3 footer-color footer-link">
               © 2023 Copyright:
               <p>
-                <NavLink
-                  className="text-white"
-                  href="https://avtarfashion.com/"
-                >
+                <NavLink className="text-white" to="https://avtarfashion.com/">
                   AvtarFashion.com
                 </NavLink>
               </p>

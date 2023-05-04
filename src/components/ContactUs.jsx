@@ -13,7 +13,7 @@ const ContactUs = () => {
             style={{ border: "0" }}
             allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
         <div className="d-flex align-items-center justify-content-center  mb-5 container">

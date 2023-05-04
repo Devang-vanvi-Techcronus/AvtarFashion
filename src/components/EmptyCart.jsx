@@ -1,8 +1,7 @@
 import React from "react";
 import EMPTYCARTIMG from "../assets/image/dCdflKN.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const EmptyCart = () => {
-  const Navigate = useNavigate();
   return (
     <>
       <div>
@@ -24,10 +23,9 @@ const EmptyCart = () => {
                     </h3>
                     <h4>Add something to make me happy :)</h4>
                     <NavLink
-                      href="/products"
+                      to="/products"
                       className="btn btn-primary cart-btn-transform m-3"
                       data-abc="true"
-                      onClick={Navigate("/products")}
                     >
                       continue shopping
                     </NavLink>

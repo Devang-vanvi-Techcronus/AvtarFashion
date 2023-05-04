@@ -58,7 +58,7 @@ const Page404 = () => {
           <div className="buttons-con">
             <div className="action-link-wrap">
               <NavLink
-                onclick="history.back(-1)"
+                onClick="history.back(-1)"
                 className="link-button link-back-button"
               >
                 Go Back

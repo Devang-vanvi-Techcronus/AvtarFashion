@@ -446,9 +446,9 @@ const Products = ({ activeTab }) => {
                               listData == "1" ? "mt-3" : "mt-0"
                             }`}
                           >
-                            <h5 className="mb-1 me-1">${product.price}</h5>
+                            <h5 className="mb-1 me-1">₹.{product.price}</h5>
                             <span className="text-danger">
-                              <s>$49.99</s>
+                              <s>₹.999.00</s>
                             </span>
                           </div>
                           <p className="card-text">{product.name}</p>
