@@ -13,7 +13,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import VISA_CARD from "../assets/image/cards/visa.svg";
 import MASTER_CARD from "../assets/image/cards/mastercard.svg";
 import MONSTER_CARD from "../assets/image/cards/amex.svg";
-import Mymodal from "./ShowModal";
+// import Mymodal from "./ShowModal";
 import moment from "moment/moment";
 
 export default function Cart() {
@@ -21,12 +21,10 @@ export default function Cart() {
   const [totals, setTotals] = useState({
     total: "",
   });
-  const [showModel, setshowModel] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.handleCart);
-
-  const closeModel = () => setshowModel(false);
 
   useEffect(() => {
     const getProduct = () => {
@@ -50,48 +48,6 @@ export default function Cart() {
     dispatch(removeItemsFromCart(product));
   };
 
-  const ButtonModal = (
-    <button
-      className="btn btn-success mb-3 "
-      onClick={() => {
-        navigate("/");
-        state.map((data, i) => deleteCartItems(data));
-      }}
-      href="/"
-    >
-      Go back to Shopping
-    </button>
-  );
-
-  const MyMainModel = (
-    <Mymodal closeModel={closeModel} ButtonModal={ButtonModal}>
-      <div className="wrapper-order">
-        {" "}
-        <svg
-          className="checkmark"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 52 52"
-        >
-          {" "}
-          <circle
-            className="checkmark__circle"
-            cx="26"
-            cy="26"
-            r="25"
-            fill="none"
-          />{" "}
-          <path
-            className="checkmark__check"
-            fill="none"
-            d="M14.1 27.2l7.1 7.2 16.7-16.8"
-          />
-        </svg>
-      </div>
-
-      <h3 className="green">Hurray !!</h3>
-      <p className="text">Your Order has been placed.. </p>
-    </Mymodal>
-  );
   const WeekDate = moment().add(1, "weeks");
 
   const cartItems = (product) => {
@@ -260,7 +216,7 @@ export default function Cart() {
 
                     <div
                       className="mb-3 d-flex justify-content-center align-items-center"
-                      onClick={() => setshowModel(true)}
+                      onClick={() => navigate("/payment")}
                     >
                       <span href="" className="btn-total btn--doar">
                         Buy Now!
@@ -272,8 +228,6 @@ export default function Cart() {
             </div>
           </div>
         </section>
-
-        {showModel && MyMainModel}
       </>
     );
   };

@@ -17,6 +17,8 @@ import Logout from "./Authentication/Logout";
 import Product from "./components/product";
 import Profile from "./components/Profile";
 import LayoutNoFooter from "./components/LayoutNoFooter";
+import Payment from "./components/Payment";
+import ShowModal from "./components/ShowModal";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpwd" element={<ForgetPwd />} />
           <Route path="/password" element={<ResetPwd />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/showmodal" element={<ShowModal />} />
         </Route>
 
         <Route path="*" element={<Page404 />} />
