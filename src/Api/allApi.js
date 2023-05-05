@@ -47,5 +47,4 @@ export const getWithoutToken = (url) => {
   }).then(function (response) {
     return response.json();
   });
-  // .catch((error) => toast.error(error?.response?.data?.message));
 };

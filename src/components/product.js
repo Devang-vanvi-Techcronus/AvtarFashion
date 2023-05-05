@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-bootstrap";
-// import { useLocation, useParams } from "react-router";
-import { PRODUCT_URL } from "../Api/helper/coreapicall";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { getWithoutToken } from "../Api/allApi";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Loading from "../utils/Loader";
 import { addCart, addToCart } from "../redux/action";
-// import { useCartContext } from "../context/CartContext";
 
 export default function Product() {
-  // const addProduct = useCartContext();
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -52,8 +47,7 @@ export default function Product() {
         <div className="col-md-6">
           <h4 className="text-uppercase text-black-50">{product.category}</h4>
           <h1 className="display-5">{product.name}</h1>
-          <h3 className="display-6 fw-bold my-4">${product.price}</h3>
-          {/* <p className="lead">Rating{product.rating && product.rating.rate}</p> */}
+          <h3 className="display-6 fw-bold my-4">₹.{product.price}</h3>
           <p className="lead mb-5">{product.description}</p>
 
           <div className="d-flex justify-content-around align-items-center h-45">
@@ -62,7 +56,7 @@ export default function Product() {
               className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
               type="submit"
             >
-              <i class="fa fa-cart-plus fa-lg  me-2" aria-hidden="true"></i>
+              <i className="fa fa-cart-plus fa-lg  me-2" aria-hidden="true"></i>
               Add to Card
             </button>
             <button
@@ -70,7 +64,10 @@ export default function Product() {
               type="submit"
               onClick={() => navigate("/cart")}
             >
-              <i class="fa fa-caret-right fa-lg  me-2" aria-hidden="true"></i>
+              <i
+                className="fa fa-caret-right fa-lg  me-2"
+                aria-hidden="true"
+              ></i>
               Go to Card
             </button>
           </div>

@@ -5,11 +5,13 @@ import { toast } from "react-toastify";
 import FORGOTPWD from "../../src/assets/image/13.png";
 import { Notification } from "../utils/Notification";
 import Loading from "../utils/Loader";
+import { useNavigate } from "react-router-dom";
 
 const DefaultValues = {
   email: "",
 };
 const ForgetPwd = () => {
+  const Navigate = useNavigate();
   const [values, setValues] = useState(DefaultValues);
   const [loading, setloading] = useState(false);
   const [errors, setErrors] = useState({
@@ -47,6 +49,7 @@ const ForgetPwd = () => {
         setloading(false);
 
         toast.success(Notification.TOST_SUCESS);
+        Navigate("/password");
       })
       .catch((error) => {
         toast.error("Something went wrong");
@@ -61,7 +64,7 @@ const ForgetPwd = () => {
         <Loading />
       ) : (
         <section className="calcc bg-light">
-          <div className="container py-5 h-100">
+          <div className="container h-100">
             <div className="row  align-items-center justify-content-center hvh-80 ">
               <div className="col-md-8 col-lg-7 col-xl-6 text-center">
                 <img src={FORGOTPWD} className="img-fluid" alt="image" />
@@ -91,7 +94,7 @@ const ForgetPwd = () => {
                     )}
                   </div>
 
-                  <div className="h-45 d-grid ">
+                  <div className="h-45 d-grid mb-5 ">
                     <button
                       type="submit"
                       className="btn btn-outline-primary btn-sm btn-block c-btn "

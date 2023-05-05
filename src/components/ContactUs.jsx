@@ -1,4 +1,5 @@
 import React from "react";
+import { isAuthenticated } from "../utils/common";
 
 const ContactUs = () => {
   return (
@@ -10,12 +11,12 @@ const ContactUs = () => {
             width="100%"
             height="450"
             style={{ border: "0" }}
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
-        <div className="d-flex align-items-center justify-content-center w-100 mb-5">
+        <div className="d-flex align-items-center justify-content-center  mb-5 container">
           <div className="col-md-6 col-lg-6 col-xl-5 col-12">
             <form>
               <div className="form-outline mb-4">
@@ -26,6 +27,7 @@ const ContactUs = () => {
                   type="text"
                   name="fullname"
                   id="form1Example13"
+                  // value={isAuthenticated().user ? name : ""}
                   className="form-control form-control-lg"
                 />
               </div>
@@ -36,6 +38,7 @@ const ContactUs = () => {
                 <input
                   type="email"
                   name="email"
+                  // value={isAuthenticated().user ? email : ""}
                   id="form1Example13"
                   className="form-control form-control-lg"
                 />

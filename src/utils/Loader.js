@@ -10,7 +10,7 @@ export const Loading = () => {
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           visible={true}
-          class="loadercenter1"
+          className="loadercenter1"
         />
       </div>
     </>

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -6,30 +7,30 @@ const Footer = () => {
       <div className="container-flid mt-auto">
         <footer className="text-center text-lg-start text-white theme-black-footer">
           <div className="theme-blue-footer  ">
-            <section className="d-flex justify-content-between p-4 theme-blue-footer container mb-5">
+            <section className="d-flex justify-content-between p-4 theme-blue-footer container">
               <div className="me-5">
                 <span>Get connected with us on social networks:</span>
               </div>
 
               <div>
-                <a href="" className="text-white me-4">
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="" className="text-white me-4">
+                </NavLink>
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="" className="text-white me-4">
+                </NavLink>
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-google" aria-hidden="true"></i>
-                </a>
-                <a href="" className="text-white me-4">
+                </NavLink>
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-instagram" aria-hidden="true"></i>
-                </a>
-                <a href="" className="text-white me-4">
+                </NavLink>
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-                <a href="" className="text-white me-4">
+                </NavLink>
+                <NavLink to="/" className="text-white me-4">
                   <i className="fa fa-github" aria-hidden="true"></i>
-                </a>
+                </NavLink>
               </div>
             </section>
           </div>
@@ -51,24 +52,24 @@ const Footer = () => {
                     <h6 className="text-uppercase fw-bold">Products</h6>
                     <div className="mb-4 mt-0 d-inline-block mx-auto hr-tag" />
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         NewsLetter
-                      </a>
+                      </NavLink>
                     </p>
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         SiteMap
-                      </a>
+                      </NavLink>
                     </p>
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         Subscribe
-                      </a>
+                      </NavLink>
                     </p>
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         Give Aways
-                      </a>
+                      </NavLink>
                     </p>
                   </div>
 
@@ -76,24 +77,24 @@ const Footer = () => {
                     <h6 className="text-uppercase fw-bold">Useful links</h6>
                     <div className="mb-4 mt-0 d-inline-block mx-auto hr-tag" />
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/contactus" className="text-white">
                         Contact Us
-                      </a>
+                      </NavLink>
                     </p>
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         Community Guideline
-                      </a>
+                      </NavLink>
                     </p>
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         Shipping Rates
-                      </a>
+                      </NavLink>
                     </p>
                     <p>
-                      <a href="#!" className="text-white">
+                      <NavLink to="/" className="text-white">
                         Help
-                      </a>
+                      </NavLink>
                     </p>
                   </div>
 
@@ -120,9 +121,9 @@ const Footer = () => {
             <div className="text-center p-3 footer-color footer-link">
               © 2023 Copyright:
               <p>
-                <a className="text-white" href="https://avtarfashion.com/">
+                <NavLink className="text-white" to="https://avtarfashion.com/">
                   AvtarFashion.com
-                </a>
+                </NavLink>
               </p>
             </div>
           </div>

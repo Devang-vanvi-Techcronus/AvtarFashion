@@ -1,9 +1,3 @@
-export const addToCart = (product) => {
-  return {
-    type: "ADDTOITEM",
-    payload: product,
-  };
-};
 export const addCart = (product) => {
   return {
     type: "ADDITEM",
@@ -14,5 +8,18 @@ export const delCart = (product) => {
   return {
     type: "DELETEITEM",
     payload: product,
+  };
+};
+
+export const removeItemsFromCart = (product) => {
+  return {
+    type: "REMOVE_CART_ITEM",
+    payload: product,
+  };
+};
+
+export const calculateTotal = () => {
+  return {
+    type: "CALCULATE_TOTAL",
   };
 };

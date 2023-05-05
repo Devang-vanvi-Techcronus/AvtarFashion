@@ -1,13 +1,15 @@
 import React from "react";
 import ABOUTIMG from "../assets/image/aboutus.jpg";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const About = () => {
+  const Navigate = useNavigate();
   return (
     <>
       <section className="about-section">
         <div className="container">
           <div className="row mb-5">
-            <div className="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+            <div className="content-column col-lg-6 col-md-12 col-sm-12 order-2 mt-5">
               <div className="inner-column">
                 <div className="sec-title">
                   <span className="title">About AvtarFashion</span>
@@ -27,23 +29,36 @@ const About = () => {
                   platform coupons, each tier comes with its own special perks.
                 </div>
                 <div className="btn-box">
-                  <a href="#" className="theme-btn btn-style-one">
+                  <button
+                    className="theme-btn btn-style-one"
+                    onClick={() => Navigate("/contactus")}
+                  >
                     Contact Us
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div className="image-column col-lg-6 col-md-12 col-sm-12">
+            <div className="image-column col-lg-6 col-md-12 col-sm-12 mb-3">
               <div className="inner-column wow fadeInLeft">
                 <div className="author-desc">
-                  <h2> AVTARFASHION INSIDER</h2>
-                  <span>ONLINE SHOPPING MADE EASY</span>
+                  <h2 className="about_bannertext"> AVTARFASHION INSIDER</h2>
+                  <span className="about_bannertext">
+                    ONLINE SHOPPING MADE EASY
+                  </span>
                 </div>
                 <figure className="image-1">
-                  <a href="#" className="lightbox-image" data-fancybox="images">
-                    <img title="Rahul Kumar Yadav" src={ABOUTIMG} alt="" />
-                  </a>
+                  <NavLink
+                    href="#"
+                    className="lightbox-image"
+                    data-fancybox="images"
+                  >
+                    <img
+                      title="Rahul Kumar Yadav"
+                      src={ABOUTIMG}
+                      alt="imagehere"
+                    />
+                  </NavLink>
                 </figure>
               </div>
             </div>

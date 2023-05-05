@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import axios from "../Api/axios";
 import { validateEmail, validatePassword } from "../utils/validations";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API } from "../Api/helper/backendAPi";
 import { postWithoutToken, setLocalStorage } from "../Api/allApi";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "../utils/Notification";
+// import LOGINIMG from "C:/Users/devan/OneDrive/Pictures/abc12.jpg";
 import LOGINIMG from "../../src/assets/image/11.png";
 import Loading from "../utils/Loader";
 
@@ -61,24 +60,23 @@ const Login = () => {
       return false;
     }
     setloading(true);
-    postWithoutToken(LOGIN_URL, values)
-      .then((response) => {
-        setloading(false);
+
+    postWithoutToken(LOGIN_URL, values).then((response) => {
+      setloading(false);
+      if (response.success == true) {
         if (response.status == 200) {
           toast.success(Notification.TOST_SUCESS);
           setAuth(values);
           setLocalStorage("apiToken", response.token);
           setLocalStorage("user", response.user);
           Navigate("/");
-        } else if (response.status == 401) {
-          toast.error(Notification.TOST_401_ERROR);
-        } else {
-          toast.error(Notification.TOST_401_ERROR);
         }
-      })
-      .catch((response) => {
+      } else if (response.success == false) {
+        toast.error(response.message);
+      } else {
         toast.error(Notification.TOST_500_ERROR);
-      });
+      }
+    });
 
     return true;
   };
@@ -89,13 +87,13 @@ const Login = () => {
         <Loading />
       ) : (
         <section className=" bg-white calcc">
-          <div className="container py-5 h-100">
+          <div className="container  h-100">
             <div className="row h-100  align-items-center justify-content-center hvh-80 ">
               <div className="col-md-8 col-lg-7 col-xl-6 text-center">
                 <img src={LOGINIMG} className="img-fluid" alt="image" />
               </div>
               <div className="col-md-7 col-lg-5 col-xl-5">
-                <div className="mb-3 text-primary">
+                <div className="mb-3 text-primary mt-5">
                   <h3>Please Sign in this webpage</h3>
                 </div>
                 <form onSubmit={onSubmit}>
@@ -123,7 +121,7 @@ const Login = () => {
                     <label className="form-label" htmlFor="form1Example23">
                       Password
                     </label>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                       <input
                         type={showPwd ? "text" : "password"}
                         name="password"
@@ -155,7 +153,6 @@ const Login = () => {
                   <div className="h-45 d-grid ">
                     <button
                       type="submit"
-                      // onClick={onSubmit}
                       className="btn btn-outline-primary btn-sm btn-block c-btn "
                     >
                       Sign in
@@ -167,26 +164,26 @@ const Login = () => {
                       OR
                     </p>
                   </div>
-                  <div className="d-flex justify-content-around align-items-center h-45">
+                  <div className="d-flex justify-content-around align-items-center  mb-5">
                     <button
-                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
+                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
                         className="fa fa-facebook fa-lg me-2"
                         aria-hidden="true"
                       ></i>
-                      Continue with Facebook
+                      <span> Continue with Facebook</span>
                     </button>
                     <button
-                      className="btn btn-outline-primary btn-block c-btn h-100 w-100"
+                      className="btn btn-outline-primary btn-block c-btn h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
                         className="fa fa-google fa-lg  me-2"
                         aria-hidden="true"
                       ></i>
-                      Continue with Gmail
+                      <span>Continue with Gmail</span>
                     </button>
                   </div>
                 </form>

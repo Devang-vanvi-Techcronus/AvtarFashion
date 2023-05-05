@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import axios from "../Api/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -10,7 +9,6 @@ import {
   validName,
   validcPassword,
 } from "../utils/validations";
-import { API } from "../Api/helper/backendAPi";
 import { postWithoutToken, setLocalStorage } from "../Api/allApi";
 import { Notification } from "../utils/Notification";
 import SIGNUPIMG from "../../src/assets/image/12.png";
@@ -21,18 +19,16 @@ const DefaultValues = {
   name: "",
   email: "",
   password: "",
-  // cpassword: "",
 };
 const SignUp = () => {
   const [showPwd, setShowPwd] = useState(false);
-  // const [showPwd1, setShowPwd1] = useState(false);
+
   const [values, setValues] = useState(DefaultValues);
   const [loading, setloading] = useState(false);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     password: "",
-    // cpassword: "",
   });
 
   const handleChange = (e) => {
@@ -50,7 +46,6 @@ const SignUp = () => {
     const fullnameError = validName(values.name);
     const emailError = validateEmail(values.email);
     const pwdError = validatePassword(values.password);
-    // const cpwdError = validcPassword(values);
 
     if (fullnameError) {
       tempErrors = { ...tempErrors, name: fullnameError };
@@ -64,10 +59,7 @@ const SignUp = () => {
       tempErrors = { ...tempErrors, password: pwdError };
       valid = false;
     }
-    // if (cpwdError) {
-    //   tempErrors = { ...tempErrors, cpassword: cpwdError };
-    //   valid = false;
-    // }
+
     setErrors(tempErrors);
     return valid;
   };
@@ -78,21 +70,19 @@ const SignUp = () => {
       return false;
     }
     setloading(true);
-    postWithoutToken(REGISTER_URL, values)
-      .then((response) => {
-        setloading(false);
+    postWithoutToken(REGISTER_URL, values).then((response) => {
+      setloading(false);
+      if (response.success == true) {
         if (response.status == 201) {
           toast.success(Notification.TOST_SUCESS);
           setLocalStorage("apiToken", response);
-        } else if (response.status == 401) {
-          toast.error(Notification.TOST_401_ERROR);
-        } else {
-          toast.error(Notification.TOST_500_ERROR);
         }
-      })
-      .catch((response) => {
+      } else if (response.success == false) {
+        toast.error(response.message);
+      } else {
         toast.error(Notification.TOST_500_ERROR);
-      });
+      }
+    });
   };
   return (
     <>
@@ -100,13 +90,13 @@ const SignUp = () => {
         <Loading />
       ) : (
         <section className=" bg-white calcc">
-          <div className="container py-5 h-100">
+          <div className="container  h-100">
             <div className="row align-items-center justify-content-center hvh-80 ">
               <div className="col-md-6 col-lg-7 col-xl-6 text-center">
                 <img src={SIGNUPIMG} className="img-fluid" alt="image" />
               </div>
               <div className="col-md-6 col-lg-5 col-xl-5">
-                <div className="mb-3 text-primary">
+                <div className="mb-3 text-primary mt-3">
                   <h3>Create your account</h3>
                 </div>
                 <form onSubmit={onSubmit}>
@@ -177,35 +167,6 @@ const SignUp = () => {
                       </p>
                     )}
                   </div>
-                  {/* <div className="form-outline mb-3">
-                  <label className="form-label" htmlFor="form1Example23">
-                    Confirm Password
-                  </label>
-                  <div class="input-group mb-3">
-                    <input
-                      type={showPwd1 ? "text" : "password"}
-                      name="cpassword"
-                      id="form1Example23"
-                      onChange={handleChange}
-                      placeholder="**********"
-                      value={values.cpassword}
-                      error={errors.cpassword}
-                      className="form-control form-control-lg"
-                    />
-                    <button
-                      className="btn btn-show-eye"
-                      type="button"
-                      onClick={() => setShowPwd1(!showPwd1)}
-                    >
-                      {!showPwd1 ? <AiFillEye /> : <AiFillEyeInvisible />}
-                    </button>
-                  </div>
-                  {errors.cpassword && (
-                    <p className="text-danger insta-smart-error">
-                      {errors.cpassword}
-                    </p>
-                  )}
-                </div> */}
 
                   <div className="d-flex justify-content-end align-items-start mb-4">
                     <div className="form-check me-2">
@@ -231,9 +192,9 @@ const SignUp = () => {
                       OR
                     </p>
                   </div>
-                  <div className="d-flex justify-content-around align-items-center h-45">
+                  <div className="d-flex justify-content-around align-items-center  mb-5">
                     <button
-                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
+                      className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
@@ -243,7 +204,7 @@ const SignUp = () => {
                       Continue with Facebook
                     </button>
                     <button
-                      className="btn btn-outline-primary btn-block c-btn h-100 w-100"
+                      className="btn btn-outline-primary btn-block c-btn h-100 w-100 py-2"
                       type="submit"
                     >
                       <i
