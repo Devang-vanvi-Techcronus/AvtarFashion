@@ -1,9 +1,11 @@
-import React, { Fragment, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useRef } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { NavLink, useNavigate } from "react-router-dom";
-// import Mymodal from "./ShowModal";
+import { useNavigate } from "react-router-dom";
+import VISA_CARD from "../assets/image/cards/visa.svg";
+import MASTER_CARD from "../assets/image/cards/mastercard.svg";
+import MONSTER_CARD from "../assets/image/cards/amex.svg";
+import Mymodal from "./ShowModal";
 import {
   CardNumberElement,
   CardCvcElement,
@@ -12,13 +14,10 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import {
-  getLocalStorage,
-  getWithoutToken,
-  postWithoutToken,
-} from "../Api/allApi";
+import { getLocalStorage } from "../Api/allApi";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { PAYMENT_URL } from "../Api/helper/backendAPi";
 
 const Payment = () => {
   const stripeApiKey =
@@ -34,58 +33,20 @@ const Payment = () => {
 
 const PaymentForm = () => {
   const [secret, setSecret] = useState("");
-  // const [showModel, setshowModel] = useState("false");
+  const [checkoutPopup, setCheckoutPopup] = useState(false);
 
-  //   const closeModel = () => setshowModel(false);
   const payBtn = useRef(null);
   const navigate = useNavigate();
 
   const TotalPRice = getLocalStorage("TotalPRice");
-  const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
 
   const paymentData = {
     amount: TotalPRice,
   };
-  console.log(paymentData, "paymentData");
 
-  //   const ButtonModal = (
-  //     <NavLink className="btn btn-success mb-3 " to="/">
-  //       Go back to Shopping
-  //     </NavLink>
-  //   );
-
-  //   const MyMainModel = (
-  //     <Mymodal closeModel={closeModel} ButtonModal={ButtonModal}>
-  //       <div className="wrapper-order">
-  //         {" "}
-  //         <svg
-  //           className="checkmark"
-  //           xmlns="http://www.w3.org/2000/svg"
-  //           viewBox="0 0 52 52"
-  //         >
-  //           {" "}
-  //           <circle
-  //             className="checkmark__circle"
-  //             cx="26"
-  //             cy="26"
-  //             r="25"
-  //             fill="none"
-  //           />{" "}
-  //           <path
-  //             className="checkmark__check"
-  //             fill="none"
-  //             d="M14.1 27.2l7.1 7.2 16.7-16.8"
-  //           />
-  //         </svg>
-  //       </div>
-  //       <h3 className="green">Hurray !!</h3>
-  //       <p className="text">Your Order has been placed.. </p>
-  //     </Mymodal>
-  //   );
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     payBtn.current.disabled = true;
     const config = {
@@ -94,63 +55,126 @@ const PaymentForm = () => {
       },
     };
 
-    const data = postWithoutToken(`/payment/process`, paymentData).then(
-      (response) => {
-        const client_secret = response.client_secret;
-        console.log(client_secret, "cccc");
-        getData();
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-        toast.success(Notification.TOST_SUCESS);
-        if (!stripe || !elements) return;
-        const result = stripe.confirmCardPayment(client_secret, {
-          payment_method: {
-            card: elements.getElement(CardNumberElement),
-          },
-        });
+      const { data } = await axios.post(PAYMENT_URL, paymentData, config);
 
-        console.log(result, "result");
-        result.then(
-          (value) => toast.success(value.paymentIntent.status),
-          navigate("/products")
-        );
+      const client_secret = data.client_secret;
+      if (!stripe || !elements) return;
+      const result = await stripe.confirmCardPayment(client_secret, {
+        payment_method: {
+          card: elements.getElement(CardNumberElement),
+        },
+      });
+
+      if (result.error) {
+        payBtn.current.disabled = false;
+        toast.error(result.error.message);
+      } else {
+        if (result.paymentIntent.status === "succeeded") {
+          toast.success("success");
+          setTimeout(() => {
+            setCheckoutPopup(true);
+          }, 3000);
+        } else {
+          toast.error("There's some issue while processing payment ");
+        }
       }
-    );
-  };
-
-  const getData = () => {
-    toast.success(Notification.TOST_SUCESS);
+    } catch (error) {
+      payBtn.current.disabled = false;
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
     <>
-      <div className="paymentContainer ">
-        <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-          <h3>Card Info</h3>
-          <div>
-            <i className="fa fa-credit-card me-3" aria-hidden="true"></i>
-            <CardNumberElement className="paymentInput">
-              <input required type="number" />
-            </CardNumberElement>
+      <div className="padding">
+        <form onSubmit={(e) => submitHandler(e)}>
+          <div className="row">
+            <div className="container-fluid d-flex justify-content-center">
+              <div className="col-sm-8 col-md-6">
+                <div className="card p-3">
+                  <div className="card-header mt-3">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <span>CREDIT/DEBIT CARD PAYMENT</span>
+                      </div>
+
+                      <div className="col-md-6 text-center payment-margine  ">
+                        <div className="d-flex justify-content-evenly mt-1">
+                          <div className="pay_img">
+                            <img src={VISA_CARD} />
+                          </div>
+                          <div className="pay_img">
+                            <img src={MASTER_CARD} />
+                          </div>
+                          <div className="pay_img">
+                            <img src={MONSTER_CARD} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="paymentbody">
+                    <div className="form-group mt-2">
+                      <label for="cc-number" className="control-label">
+                        CARD NUMBER
+                      </label>
+                      <CardNumberElement className="paymentInput" />
+                    </div>
+
+                    <div className="row mt-2">
+                      <div className="col-md-6">
+                        <div className="form-group mt-2">
+                          <label for="cc-exp" className="control-label">
+                            CARD EXPIRY
+                          </label>
+                          <CardExpiryElement className="paymentInput" />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group mt-2">
+                          <label for="cc-cvc" className="control-label">
+                            CARD CVC
+                          </label>
+                          <CardCvcElement className="paymentInput" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="form-group mt-2">
+                      <label for="numeric" className="control-label">
+                        CARD HOLDER NAME
+                      </label>
+                      <input
+                        type="text"
+                        className="input-lg form-control"
+                        placeholder="Name"
+                      />
+                    </div>
+
+                    <div className="form-group mt-3 mb-3">
+                      <input
+                        type="submit"
+                        value={`Pay - ₹${TotalPRice}`}
+                        ref={payBtn}
+                        className="btn btn-primary btn-lg form-control payment-fornt p-12"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <i className="fa fa-calendar-o me-3" aria-hidden="true"></i>
-            <CardExpiryElement className="paymentInput" />
-          </div>
-          <div>
-            <i className="fa fa-key me-3" aria-hidden="true"></i>
-            <CardCvcElement className="paymentInput" />
-          </div>
-          <input
-            type="submit"
-            value={`Pay - ₹${TotalPRice}`}
-            ref={payBtn}
-            className="paymentFormBtn"
-            // onClick={() => setshowModel(true)}
-          />
         </form>
       </div>
-
-      {/* {showModel && MyMainModel} */}
+      {checkoutPopup && <Mymodal />}
     </>
   );
 };

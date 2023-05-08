@@ -36,6 +36,7 @@ function App() {
             <Route path="/events" element={<Event />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/payment" element={<Payment />} />
           </Route>
 
           <Route path="/logout" element={<Logout />} />
@@ -45,8 +46,6 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpwd" element={<ForgetPwd />} />
           <Route path="/password" element={<ResetPwd />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/showmodal" element={<ShowModal />} />
         </Route>
 
         <Route path="*" element={<Page404 />} />

@@ -1,12 +1,19 @@
 import ReactDOM from "react-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemsFromCart } from "../redux/action";
 
 const Mymodal = () => {
-  const [showModel, setshowModel] = useState("true");
+  const [showModel, setshowModel] = useState("false");
+  const dispatch = useDispatch();
 
-  const closeModel = () => setshowModel(false);
+  const state = useSelector((state) => state.handleCart);
+
+  const handleModel = () => {
+    state.map((data) => dispatch(removeItemsFromCart(data)));
+    setshowModel(false);
+  };
 
   useEffect(() => {
     document.body.style.overflowY = "hidden";
@@ -20,8 +27,6 @@ const Mymodal = () => {
       <div className="model_wapper"></div>
       <div className="modal_container">
         <div className="text-center">
-          {/* {children}
-          {ButtonModal} */}
           <div className="wrapper-order">
             {" "}
             <svg
@@ -44,11 +49,13 @@ const Mymodal = () => {
               />
             </svg>
           </div>
-
           <h3 className="green">Hurray !!</h3>
           <p className="text">Your Order has been placed.. </p>
-
-          <NavLink className="btn btn-success mb-3 " to="/">
+          <NavLink
+            className="btn btn-success mb-3 "
+            to="/"
+            onClick={() => handleModel()}
+          >
             Go back to Shopping
           </NavLink>
         </div>

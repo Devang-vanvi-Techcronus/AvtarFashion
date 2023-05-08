@@ -1008,10 +1008,9 @@ input::-webkit-inner-spin-button {
   margin: 2vmax;
 }
 
-.paymentForm {
-  width: 22%;
-  height: 100%;
-}
+/* .paymentForm {
+  width: 100%;
+} */
 
 .paymentForm > p {
   font: 400 2vmax "Roboto";
@@ -1030,8 +1029,8 @@ input::-webkit-inner-spin-button {
 }
 
 .paymentInput {
-  padding: 1vmax 4vmax;
-  padding-right: 1vmax;
+  padding: 12px;
+
   width: 100%;
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.267);
@@ -1089,4 +1088,24 @@ input::-webkit-inner-spin-button {
     font: 300 4vw "Roboto";
     padding: 4vw;
   }
+}
+
+.payment-fornt {
+  font-size: 8rem;
+}
+.padding {
+  padding: 5rem !important;
+}
+.payment-margine {
+  margin-top: -5px;
+}
+.form-control:focus {
+  box-shadow: 10px 0px 0px 0px #ffffff !important;
+  border-color: #4ca746;
+}
+.p-12 {
+  padding: 12px;
+}
+.pay_img {
+  width: 20%;
 }
