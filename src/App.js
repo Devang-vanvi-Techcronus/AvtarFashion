@@ -17,6 +17,8 @@ import Logout from "./Authentication/Logout";
 import Product from "./components/product";
 import Profile from "./components/Profile";
 import LayoutNoFooter from "./components/LayoutNoFooter";
+import Payment from "./components/Payment";
+import ShowModal from "./components/ShowModal";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
             <Route path="/events" element={<Event />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/payment" element={<Payment />} />
           </Route>
 
           <Route path="/logout" element={<Logout />} />

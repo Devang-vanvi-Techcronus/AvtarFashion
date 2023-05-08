@@ -53,6 +53,8 @@ export const handleCart = (state = cart, action) => {
         state.total = total;
       };
       let TotalPRice = totalprice(state);
+      // console.log(TotalPRice, "ttt");
+      localStorage.setItem("TotalPRice", state.total);
 
     default:
       return state;
