@@ -19,8 +19,10 @@ import Profile from "./components/Profile";
 import LayoutNoFooter from "./components/LayoutNoFooter";
 import Payment from "./components/Payment";
 import ShowModal from "./components/ShowModal";
+import { useSelector } from "react-redux";
 
 function App() {
+  const state = useSelector((state) => state.handleCart);
   return (
     <>
       <Routes>
@@ -36,7 +38,9 @@ function App() {
             <Route path="/events" element={<Event />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/payment" element={<Payment />} />
+            {state.length > 0 && (
+              <Route path="/cart/payment" element={<Payment />} />
+            )}
           </Route>
 
           <Route path="/logout" element={<Logout />} />

@@ -216,7 +216,7 @@ export default function Cart() {
 
                     <div
                       className="mb-3 d-flex justify-content-center align-items-center"
-                      onClick={() => navigate("/payment")}
+                      onClick={() => navigate("/cart/payment")}
                     >
                       <span href="" className="btn-total btn--doar">
                         Buy Now!
