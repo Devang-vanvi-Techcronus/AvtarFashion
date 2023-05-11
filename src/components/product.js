@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getWithoutToken } from "../Api/allApi";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Loading from "../utils/Loader";
 import { addCart, addToCart } from "../redux/action";
+import ReactImageMagnify from "react-image-magnify";
 
 export default function Product() {
   const { state } = useLocation();
@@ -14,6 +15,8 @@ export default function Product() {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const state1 = useSelector((state) => state.handleCart);
+  console.log(state1, "sss");
 
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -37,14 +40,42 @@ export default function Product() {
   }, []);
 
   const ShowProduct = () => {
+    const WATCHURL = "https://demos.imgix.net/wristwatch.jpg";
+    if (product?.images) {
+      var WATCHURL1 = product?.images[0].url;
+    }
+
+    console.log(WATCHURL1, "www");
     return (
       <>
-        <div className="col-md-6">
-          {product.images && (
-            <img src={product?.images[0].url} className="cart_image" />
-          )}
+        <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+          <div className="imageMagni  cart_image">
+            <div style={{ width: "80%" }}>
+              <ReactImageMagnify
+                {...{
+                  smallImage: {
+                    alt: "Wristwatch by Ted Baker London",
+                    isFluidWidth: true,
+                    src: WATCHURL1,
+                    width: 400,
+                    height: 400,
+                  },
+                  largeImage: {
+                    src: WATCHURL1,
+                    width: 1500,
+                    height: 1800,
+                  },
+                  isHintEnabled: true,
+                  enlargedImageContainerDimensions: {
+                    width: "270%",
+                    height: "100%",
+                  },
+                }}
+              />
+            </div>
+          </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-lg-6 col-md-12 col-sm-12 col-12 ">
           <h4 className="text-uppercase text-black-50">{product.category}</h4>
           <h1 className="display-5">{product.name}</h1>
           <h3 className="display-6 fw-bold my-4">₹.{product.price}</h3>
@@ -56,7 +87,17 @@ export default function Product() {
               className="btn btn-outline-primary  btn-block c-btn me-2 h-100 w-100"
               type="submit"
             >
-              <i className="fa fa-cart-plus fa-lg  me-2" aria-hidden="true"></i>
+              {state1.length > 0 ? (
+                <i
+                  className="fa fa-cart-plus fa-lg  me-2"
+                  aria-hidden="true"
+                ></i>
+              ) : (
+                <i
+                  class="fa fa-cart-arrow-down fa-lg  me-2"
+                  aria-hidden="true"
+                ></i>
+              )}
               Add to Card
             </button>
             <button
@@ -82,7 +123,7 @@ export default function Product() {
         <Loading />
       ) : (
         <div className="container my-5 p-5 product_shadow ">
-          <div className="row py-3">
+          <div className="row py-3 demo-area">
             <ShowProduct />
           </div>
         </div>

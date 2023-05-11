@@ -1109,3 +1109,57 @@ input::-webkit-inner-spin-button {
 .pay_img {
   width: 20%;
 }
+
+/* Drift */
+
+.demo-area {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.demo-trigger {
+  display: inline-block;
+  /* width: 30%; */
+  /* float: left; */
+}
+
+.detail {
+  position: relative;
+  width: 65%;
+  float: left;
+}
+
+@media (max-width: 610px) {
+  .detail,
+  .demo-trigger {
+    float: none;
+  }
+
+  .demo-trigger {
+    display: block;
+    width: 50%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .detail {
+    margin: 0;
+    width: auto;
+  }
+
+  p {
+    margin: 0 auto 1em;
+  }
+
+  .responsive-hint {
+    display: none;
+  }
+  h3 {
+    margin-top: 20px;
+  }
+}
+/* .imageMagni {
+  width: 500px;
+  height: 500px;
+} */
