@@ -75,7 +75,7 @@ export default function Product() {
             </div>
           </div>
         </div>
-        <div className="col-lg-6 col-md-12 col-sm-12 col-12 ">
+        <div className="col-lg-6 col-md-12 col-sm-12 col-12 mt-1 ">
           <h4 className="text-uppercase text-black-50">{product.category}</h4>
           <h1 className="display-5">{product.name}</h1>
           <h3 className="display-6 fw-bold my-4">₹.{product.price}</h3>
